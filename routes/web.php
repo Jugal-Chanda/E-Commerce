@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'],function(){
     // For admin Category
-
+    Route::get('/','AdminController@index')->name('adminDashboard');
     Route::resource('category', 'CategoryController');
     Route::resource('product', 'ProductController');
 

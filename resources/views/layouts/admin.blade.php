@@ -82,7 +82,7 @@
 
                   <ul class="list-group">
                     <li class="list-group-item">
-                      <a href="#" style="text-decoration: none;">Home</a>
+                      <a href="{{ route('adminDashboard') }}" style="text-decoration: none;">Home</a>
                     </li>
                     <li class="list-group-item">
                       <a href="{{ route('category.create') }}" style="text-decoration: none;">Create Category</a>
