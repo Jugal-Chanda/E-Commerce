@@ -90,6 +90,12 @@
                     <li class="list-group-item">
                       <a href="{{ route('category.index') }}" style="text-decoration: none;">Categories</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('product.create') }}" style="text-decoration: none;">Add Product</a>
+                    </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('product.index') }}" style="text-decoration: none;">Products</a>
+                    </li>
 
 
                   </ul>
