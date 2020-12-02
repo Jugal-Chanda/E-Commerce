@@ -41,6 +41,11 @@
                         </td>
                         <td>
                             <a href="" class="btn btn-info btn-sm">Edit</a>
+                            <form class="d-inline" action="{{ route('product.destroy',['product'=>$product])}}" method="post">
+                              @csrf
+                              @method('delete')
+                              <button type="submit" name="button"  class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
