@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
+    return view('home');
 });
 
 Route::group(['prefix' => 'admin'],function(){
@@ -24,3 +24,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::resource('product', 'ProductController');
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+body {
+  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto Condensed', sans-serif; */
+}
+
+.top_nav_link {
+    color: white;
+    font-weight: 300;
+    margin: 0 5px;
+    transition: all 0.4s;
+}
+
+.top_nav_link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+
+/*Top nav design*/
+.main_nav {
+    background-color: #EEEEEE;
+}
+
+
+.top_nav_item {
+    transition: all 0.4s;
+}
+.top_nav_item .nav-link {
+    color: #00ADB5;
+    font-weight: bold;
+    transition: all 0.4s;
+}
+/*end Top nav design*/
+
+
+/*Top Nav hover design*/
+.top_nav_item:hover {
+    background-color: #90D1D0;
+    border-radius: 5px;
+}
+
+.top_nav_item:hover .nav-link {
+    color: #3CB879;
+}
+
+/*End top nav hover design*/
+
+
+/*Category Sidebar*/
+.category_sidebar {
+    border: 2px solid #00ADB5;
+    box-shadow: 2px 2px 7px #222831;
+    position: relative;
+}
+.category_sidebar_header {
+    color: #00ADB5;
+    border: 2px solid #00ADB5;
+    box-shadow: 2px 2px 7px #222831;
+}
+.category_sidebar_content {
+    /* border: 2px solid #00ADB5;
+    box-shadow: 2px 2px 7px #222831; */
+}
+.category_sidebar_content ul{
+
+}
+.category_sidebar_item {
+    border-bottom: 1px solid #222831;
+    padding: 10px 0;
+    padding-left: 7px;
+    transition: 0.4s;
+
+}
+
+.category_sidebar_item:last-child {
+    /* border: none; */
+}
+
+.category_sidebar_item_link {
+    color: black;
+    font-weight: 300;
+    display: block;
+
+}
+
+.social_payment {
+    width: 100%;
+}
+
+.social_container {
+    background-image: url('cover.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.social_content a{
+    color: white;
+    font-weight: bolder;
+
+}
+
+.social_content a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.payment_mathod .icon {
+    font-weight: 600;
+    font-size: 48px;
+    text-align: center;
+}
+.payment_mathod p {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+.payment_mathod .icon svg{
+    width: 60px;
+}
+
+    /*sidebar item hover*/
+
+    .category_sidebar_item_link:hover{
+        text-decoration: none;
+        color: black;
+    }
+    .category_sidebar_item:hover{
+        background-color: #3CB879;
+
+        transform: scale(1.1);
+    }
+    .category_sidebar_item:hover a{
+        font-weight: bolder;
+        color: white;
+    }
+
+    /*sidebar item hover end*/
+
+/*end category sidebar*/
+
+/*search bar and cart design*/
+
+.search_input {
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+.search_btn {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    position: absolute;
+    top: 0px;
+    left: 100%;
+}
+
+.search_input:focus{
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid red;
+}
+.search_btn:focus{
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+.cart_icon {
+    position: relative;
+    transition: all 0.2s;
+}
+.cart_icon a {
+    color: black;
+}
+
+.cart_icon i{
+    font-size: 28px;
+
+}
+.cart_count {
+    background-color: #00ADB5;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    /*Cart hover*/
+    .cart_icon:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+/*end*/
+
+
+/*Porduct section*/
+
+.product_section_titile {
+    color: #00ADB5;
+    font-weight: bolder;
+}
+
+
+.product_container {
+    /* padding: 0px 10px; */
+}
+.product_container:nth-child(2) {
+    /* border-left: none;
+    border-right: none; */
+}
+.product {
+    margin: 0px 5px;
+    border: 1px solid black;
+    transition: all 0.4s;
+}
+.product_image {
+    text-align: center;
+}
+.product_sort_description {
+    padding-left: 10px;
+    font-weight: 600;
+}
+.product_price {
+    padding-left: 10px;
+    color: #00ADB5;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.add_to_cart {
+    padding-left: 10px;
+}
+.wish_list_btn {
+    display: none;
+    transition: all 0.2s;
+}
+
+.add_to_cart_btn {
+    transition: all 0.4s;
+}
+
+.view_more_product_btn {
+    text-align: right;
+}
+.view_more_product_btn a{
+    color: #00ADB5;
+    font-weight: 600;
+}
+    /*Product hover*/
+    .product:hover {
+        box-shadow: 2px 2px 20px 5px #00ADB5;
+    }
+    .product:hover .add_to_cart .wish_list_btn{
+        display: block;
+    }
+
+    .add_to_cart_btn:hover{
+        background-color:  #00ADB5;
+        transform: scale(1.02);
+        font-weight: bolder;
+    }
+
+    .view_more_product_btn a:hover {
+        text-decoration: none;
+        color: #00ADB5;
+    }
+    /*end product hover*/
+/*end*/
+
+
+/*footer deisign*/
+
+.footer {
+    background-color: #EEEEEE;
+}
+
+.details {
+    display: flex;
+}
+.details p {
+    margin-left: 10px;
+    text-align: justify;
+}
+.details span i{
+    font-size: 24px;
+}
+
+
+.footer_important_links {
+    list-style: none;
+}
+.footer_important_links li{
+    padding: 5px 0;
+}
+.footer_important_links li a {
+    color: black;
+    font-weight: 600;
+}
+.footer_important_links li a:hover{
+    text-decoration: none;
+}
+.contact_us_input {
+    height: 28px;
+    font-size: 16px;
+    color: red;
+}
+.contact_us_input:focus {
+    box-shadow: none;
+    border: 1px solid red;
+    font-size: 16px;
+}
+
+.contact_us_textarea {
+    height: 100px;
+    font-size: 16px;
+    color: red;
+}
+
+.contact_us_textarea:focus {
+    box-shadow: none;
+    border: 1px solid red;
+    font-size: 16px;
+}
+/*end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .social_payment {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
