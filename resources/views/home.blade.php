@@ -9,10 +9,11 @@
 
         <div class="category_sidebar_content mt-2 pb-2">
             <ul class="navbar-nav flex-column">
-
+                @foreach($categories as $category)
                 <li class="category_sidebar_item">
-                    <a href="" class="category_sidebar_item_link"> Category Name </a>
+                    <a href="" class="category_sidebar_item_link"> {{ $category->name }} </a>
                 </li>
+                @endforeach
 
             </ul>
             <div class="social_payment">
@@ -81,25 +82,27 @@
                 <div class="row no-gutters">
 
                     <!-- Product single -->
-
-                            <div class="col-md-4 product_container mt-2">
-                                <div class="product py-2">
-                                    <div class="product_image">
-                                          <a href="#"><img src="" alt="Product1" style="height: 200px; width: 200px;"></a>
-                                    </div>
-                                    <div class="product_sort_description">
-                                        $product->name
-                                    </div>
-                                    <div class="product_price">
-                                        ৳ 100 Tk
-                                    </div>
-                                    <div class="add_to_cart d-flex">
-                                        <a href=""class="btn btn-info add_to_cart_btn">Add to Cart</a>
-                                        <button type="button" name="button" class="btn wish_list_btn ml-2"> <i class="far fa-heart fa-lg"></i> </button>
-                                    </div>
-
+                    @foreach($products as $product)
+                        <div class="col-md-4 product_container mt-2">
+                            <div class="product py-2">
+                                <div class="product_image">
+                                      <a href="#"><img src="{{ asset($product->image1) }}" alt="Product1" style="height: 200px; width: 200px;"></a>
                                 </div>
+                                <div class="product_sort_description">
+                                    {{ $product->name }}
+                                </div>
+                                <div class="product_price">
+                                    ৳ 1400 Tk
+                                </div>
+                                <div class="add_to_cart d-flex">
+                                    <a href=""class="btn btn-info add_to_cart_btn">Add to Cart</a>
+                                    <button type="button" name="button" class="btn wish_list_btn ml-2"> <i class="far fa-heart fa-lg"></i> </button>
+                                </div>
+
                             </div>
+                        </div>
+                        @endforeach
+
 
                     <!--End-->
 
@@ -118,14 +121,14 @@
             <div class="">
                 <div class="row no-gutters">
                     <!-- Product Best Sell -->
-
+                    @foreach($products as $product)
                     <div class="col-md-4 product_container mt-2">
                         <div class="product py-2">
                             <div class="product_image">
-                                <a href="#"><img src="" alt="Product1" style="height: 200px; width: 200px;"></a>
+                                <a href="#"><img src="{{ asset($product->image1) }}" alt="Product1" style="height: 200px; width: 200px;"></a>
                             </div>
                             <div class="product_sort_description">
-                                $product->name
+                                {{ $product->name }}
                             </div>
                             <div class="product_price">
                                 ৳ 5,000 Tk
@@ -137,6 +140,7 @@
 
                         </div>
                     </div>
+                    @endforeach
 
                     <!-- End Product best sell -->
 

@@ -12,6 +12,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/9ec2b217e3.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{{ asset('custom/css/home/style.css') }}">
         @yield('customcss')
     </head>
@@ -25,9 +26,21 @@
                         </div>
                         <div class="col-md-6">
                             <div class="text-right">
-                                <a href="" class="top_nav_link">My Profile</a>
+                              @guest
+                                      <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                                  @if (Route::has('register'))
+                                          <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                                  @endif
+                              @else
+                                      <a  href="#" >{{ Auth::user()->name }} <span class="caret"></span></a>
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                          @csrf
+                                          <input type="submit" name="" value="{{ __('Logout') }}">
+                                      </form>
+                              @endguest
+                                <!-- <a href="" class="top_nav_link">My Profile</a>
                                 <a href="" class="top_nav_link">Login</a>
-                                <a href="" class="top_nav_link">Register</a>
+                                <a href="route()" class="top_nav_link">Register</a> -->
                             </div>
                         </div>
                     </div>

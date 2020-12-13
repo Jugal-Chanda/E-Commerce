@@ -13,18 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/','FrontendController@home')->name('home');
 
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
     // For admin Category
     Route::get('/','AdminController@index')->name('adminDashboard');
     Route::resource('category', 'CategoryController');
     Route::resource('product', 'ProductController');
-
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Route::get('/home', 'HomeController@index')->name('home');
