@@ -96,6 +96,12 @@
                     <li class="list-group-item">
                       <a href="{{ route('product.index') }}" style="text-decoration: none;">Products</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('stock.create') }}" style="text-decoration: none;">Add Stock</a>
+                    </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('admin.orders') }}" style="text-decoration: none;">Orders</a>
+                    </li>
 
 
                   </ul>

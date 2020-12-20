@@ -75,7 +75,7 @@
                       <a class="nav-link" href="#">Training Courses</a>
                     </li>
                     <li class="nav-item top_nav_item">
-                      <a class="nav-link" href="">My Carts</a>
+                      <a class="nav-link" href="{{ route('mycart') }}">My Carts</a>
                     </li>
 
                     <!-- <li class="nav-item dropdown">

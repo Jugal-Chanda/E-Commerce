@@ -86,7 +86,7 @@
                         <div class="col-md-4 product_container mt-2">
                             <div class="product py-2">
                                 <div class="product_image">
-                                      <a href="#"><img src="{{ asset($product->image1) }}" alt="Product1" style="height: 200px; width: 200px;"></a>
+                                      <a href="{{ route('productSingle',['product'=>$product]) }}"><img src="{{ asset($product->image1) }}" alt="Product1" style="height: 200px; width: 200px;"></a>
                                 </div>
                                 <div class="product_sort_description">
                                     {{ $product->name }}
@@ -125,7 +125,7 @@
                     <div class="col-md-4 product_container mt-2">
                         <div class="product py-2">
                             <div class="product_image">
-                                <a href="#"><img src="{{ asset($product->image1) }}" alt="Product1" style="height: 200px; width: 200px;"></a>
+                                <a href="{{ route('productSingle',['product'=>$product]) }}"><img src="{{ asset($product->image1) }}" alt="Product1" style="height: 200px; width: 200px;"></a>
                             </div>
                             <div class="product_sort_description">
                                 {{ $product->name }}
