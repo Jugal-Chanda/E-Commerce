@@ -59,7 +59,7 @@ class OrderController extends Controller
       }
       $order->total_price = $total;
       $order->save();
-
+      return view('orderPlaceConfirm');
       // dd($order->id);
   }
 

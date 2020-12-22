@@ -67,7 +67,7 @@
                     <div class="cart_icon">
                         <a href="#"><i class="fas fa-shopping-cart fa-lg"></i></a>
                         <div class="cart_count">
-                            10
+                            {{ $cart_count }}
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                                     ৳ 1400 Tk
                                 </div>
                                 <div class="add_to_cart d-flex">
-                                    <a href=""class="btn btn-info add_to_cart_btn">Add to Cart</a>
+                                    <a href="{{ route('addtocart',['id'=>$product->id]) }}"class="btn btn-info add_to_cart_btn">Add to Cart</a>
                                     <button type="button" name="button" class="btn wish_list_btn ml-2"> <i class="far fa-heart fa-lg"></i> </button>
                                 </div>
 
@@ -108,48 +108,26 @@
 
                 </div>
             </div>
-            <div class="view_more_product_btn">
+            <!-- <div class="view_more_product_btn">
                 <a href="">View More...</a>
-            </div>
+            </div> -->
         </div>
 
         <!-- end featured porduct section -->
 
         <!-- Best Sell -->
-        <div class="mt-2">
+        <!-- <div class="mt-2">
             <h4 class="product_section_titile">Best Sell</h4>
             <div class="">
                 <div class="row no-gutters">
-                    <!-- Product Best Sell -->
-                    @foreach($products as $product)
-                    <div class="col-md-4 product_container mt-2">
-                        <div class="product py-2">
-                            <div class="product_image">
-                                <a href="{{ route('productSingle',['product'=>$product]) }}"><img src="{{ asset($product->image1) }}" alt="Product1" style="height: 200px; width: 200px;"></a>
-                            </div>
-                            <div class="product_sort_description">
-                                {{ $product->name }}
-                            </div>
-                            <div class="product_price">
-                                ৳ 5,000 Tk
-                            </div>
-                            <div class="add_to_cart d-flex">
-                                <button type="button" name="button" class="btn btn-info add_to_cart_btn">Add to Cart</button>
-                                <button type="button" name="button" class="btn wish_list_btn ml-2"> <i class="far fa-heart fa-lg"></i> </button>
-                            </div>
 
-                        </div>
-                    </div>
-                    @endforeach
-
-                    <!-- End Product best sell -->
 
                 </div>
             </div>
             <div class="view_more_product_btn">
                 <a href="">View More...</a>
             </div>
-        </div>
+        </div> -->
 
         <!-- end Best sell -->
 

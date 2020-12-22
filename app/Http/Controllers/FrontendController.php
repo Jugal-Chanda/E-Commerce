@@ -11,7 +11,16 @@ class FrontendController extends Controller
 {
     public function home()
     {
-        return view('home',['categories'=>Category::all(),'products'=>Product::all()]);
+        $cart = Session::get('cart');
+        if($cart)
+        {
+          $cart_count = count(Session::get('cart'));
+        }
+        else
+        {
+          $cart_count = 0;
+        }
+        return view('home',['categories'=>Category::all(),'products'=>Product::all(),'cart_count'=> $cart_count]);
     }
     public function productSingle(Product $product)
     {
