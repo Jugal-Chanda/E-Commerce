@@ -12,4 +12,17 @@ class Toutorial extends Model
     {
       return $this->belongsToMany('App\Product');
     }
+    public function parts()
+    {
+      return $this->hasMany('App\Toutorial_Part');
+    }
+    public function hasParts()
+    {
+      $parts = $this->parts();
+      if($parts->count())
+      {
+        return true;
+      }
+      return false;
+    }
 }

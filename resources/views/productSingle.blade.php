@@ -64,13 +64,18 @@
         </div>
         <div class="col-md-4 product_tutorial">
           <h4>Tutorials</h4>
-          <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
-          <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
-          <ol>
-            @foreach($product->toutorials as $toutorial)
-            <li> <a href="#" target="_blank">{{ $toutorial->name }}</a> </li>
+            @foreach($product->toutorials as $key=>$toutorial)
+            @if($key < 2 )
+              @if($toutorial->hasParts())
+              <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/{{ $toutorial->parts[0]->code }}" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
+              @else
+              <a href="#" target="_blank"> <span class="pl-2">{{ $key }}.</span> {{ $toutorial->name }}(Comming Soon)</a><br>
+              @endif
+            @else
+            <a href="#" target="_blank">{{ $toutorial->name }}</a><br>
+            @endif
+
             @endforeach
-          </ol>
         </div>
 
       </div>
@@ -80,12 +85,12 @@
           <li class="nav-item">
             <a class="nav-link active"  data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">Description</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link"  data-toggle="tab" href="#discussion" role="tab" aria-controls="profile" aria-selected="false">Discussion</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#review" role="tab" aria-controls="contact" aria-selected="false">Review</a>
-          </li>
+          </li> -->
         </ul>
         <div class="tab-content mt-5 text-justify">
           <div class="tab-pane fade show active " id="description" role="tabpanel" >
