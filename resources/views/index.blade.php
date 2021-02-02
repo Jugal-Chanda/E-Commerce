@@ -3,6 +3,12 @@
 @section('css')
 
 <link rel="stylesheet" href="{{asset('custom/css/home.css')}}">
+<style media="screen">
+.strike{
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+</style>
 
 @endsection
 
@@ -86,7 +92,11 @@
                   {{ $stock->product->name }}
                 </div>
                 <div class="product_price">
-                  ৳ {{ $stock->product->price() }} Tk
+                  @if($stock->hasOffer())
+                  ৳ <span class="strike">{{ $stock->product->price() }}</span> {{ $stock->offerPrice() }}Tk
+                  @else
+                    ৳ {{ $stock->product->price() }}Tk
+                  @endif
                 </div>
                 <div class="add_to_cart">
                   <a href="{{ route('addtocart',['id'=>$stock->product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
