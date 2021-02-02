@@ -108,6 +108,9 @@
                     <li class="list-group-item">
                       <a href="{{ route('toutorials.create') }}" style="text-decoration: none;">Create Toutorials</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('parts.create') }}" style="text-decoration: none;">Add Vedio Parts</a>
+                    </li>
 
 
                   </ul>

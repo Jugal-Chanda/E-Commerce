@@ -46,6 +46,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Stock' => $baseDir . '/app/Stock.php',
     'App\\Toutorial' => $baseDir . '/app/Toutorial.php',
+    'App\\Toutorial_Part' => $baseDir . '/app/Toutorial_Part.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
