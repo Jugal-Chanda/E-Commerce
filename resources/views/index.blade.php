@@ -76,20 +76,20 @@
         </div>
         <div class="col-md-9">
           <div class="row">
-            @foreach($products as $product)
+            @foreach($stocks as $stock)
             <div class="col-md-3 product_container mb-2">
               <div class="product py-2">
                 <div class="product_image">
-                  <a href="{{ route('productSingle',['product'=>$product->id]) }}"><img src="{{ asset($product->image1) }}" alt="Product1"></a>
+                  <a href="{{ route('productSingle',['product'=>$stock->product->id]) }}"><img src="{{ asset($stock->product->image1) }}" alt="Product1"></a>
                 </div>
                 <div class="product_sort_description">
-                  {{ $product->name }}
+                  {{ $stock->product->name }}
                 </div>
                 <div class="product_price">
-                  ৳ {{ $product->price() }} Tk
+                  ৳ {{ $stock->product->price() }} Tk
                 </div>
                 <div class="add_to_cart">
-                  <a href="{{ route('addtocart',['id'=>$product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
+                  <a href="{{ route('addtocart',['id'=>$stock->product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
                 </div>
 
               </div>
@@ -97,7 +97,7 @@
             @endforeach
 
           </div>
-          {{ $products->onEachSide(3)->links() }}
+          {{ $stocks->onEachSide(3)->links() }}
 
         </div>
 
