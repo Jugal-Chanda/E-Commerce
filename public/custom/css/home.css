@@ -1,0 +1,125 @@
+/*Category Sidebar*/
+.category_sidebar {
+  border: 1px solid #0069CC;
+  overflow: hidden;
+}
+.side_nav_item {
+  margin-bottom: 5px;
+  transition: all 0.4s;
+  border-bottom: 1px solid #0069CC;
+  padding: 5px;
+}
+.side_nav_item a {
+  color: black;
+  text-decoration: none;
+}
+.side_nav_item:hover{
+  transform: scale(1.1);
+  background-color: rgba(48,155,255,0.4);
+  border-radius: 5px;
+}
+
+.category_sidebar_header {
+    color: black;
+    font-weight: 800;
+    text-align: center;
+    padding: 2px 0;
+    border-bottom: 2px solid #0069CC;
+}
+
+/*Cart hover*/
+.cart_icon:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.social_payment {
+    width: 100%;
+}
+
+.social_container {
+    background-image: url('../img/cover.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.social_content a{
+    color: white;
+    font-weight: bolder;
+
+}
+
+.social_content a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.payment_mathod .icon {
+    font-weight: 600;
+    font-size: 48px;
+    text-align: center;
+}
+.payment_mathod p {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+.payment_mathod .icon svg{
+    width: 60px;
+}
+
+
+/*Porduct section*/
+
+
+
+.product_container:nth-child(2) {
+    /* border-left: none;
+    border-right: none; */
+}
+.product {
+    margin: 0px 5px;
+    border: 1px solid black;
+    transition: all 0.4s;
+}
+.product_image {
+    text-align: center;
+}
+.product_sort_description {
+    padding-left: 10px;
+    font-weight: 600;
+}
+.product_price {
+    padding-left: 10px;
+    color: rgba(48,155,255,1);
+    font-weight: bolder;
+    font-size: 20px;
+}
+.add_to_cart {
+  overflow: hidden;
+}
+
+.add_to_cart_btn {
+    transition: all 0.4s;
+    background-color: rgba(48,155,255,1);
+    color: white;
+    font-weight: 600;
+    display: block;
+}
+
+.product:hover {
+    box-shadow: 2px 2px 20px 5px rgba(48,155,255,0.4);
+}
+.add_to_cart_btn:hover{
+    transform: scale(1.1);
+    color: white;
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 576px) {
+  .social_payment {
+    display: none;
+  }
+}

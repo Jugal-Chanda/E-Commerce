@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
-@section('customcss')
-<link rel="stylesheet" href="{{ asset('custom/css/home/product.css') }}">
+@section('css')
+<link rel="stylesheet" href="{{ asset('custom/css/product.css') }}">
 
 <style media="screen">
 .card {
@@ -11,16 +11,16 @@
 @endsection
 
 @section('content')
-    <div class="py-3">
+
+<section class="container">
 
       <div class="row">
-        <div class="col-lg-3 col-md-4">
+        <div class="col-md-4">
 
           <div class="img-zoom-container ">
             <div class="product_single_main_image">
               <img id="myimage" src="{{ asset($product->image1) }}" class="main_img" alt="Girl">
             </div>
-
             <div id="myresult" class="img-zoom-result"></div>
           </div>
 
@@ -32,7 +32,7 @@
           </div>
 
         </div>
-        <div class="col-lg-9 col-md-8">
+        <div class="col-md-4">
           <h2 class="text-capitalize">{{ $product->name }}</h2>
           <h4 class="text-capitalize">{{ $product->category->name }}</h4>
           <table class="text-capitalize">
@@ -47,12 +47,11 @@
             <tr>
               <td>Product in stock</td>
 
-              @if($product->hasStock())
-                    <td>: {{ $product->stocks()->where('quantity','>',0)->first()->quantity }}</td>
+                @if($product->hasStock())
+                   <td>: {{ $product->stocks()->where('quantity','>',0)->first()->quantity }}</td>
                 @else
-                    <td class="text-danger">: Out Of Stock</td>
+                   <td class="text-danger">: Out Of Stock</td>
                 @endif
-
             </tr>
             <tr>
               <td>Category</td>
@@ -60,8 +59,15 @@
             </tr>
           </table>
           <h4 class="text-success my-2"> {{ $product->price() }} tk</h4>
-          <a href="{{ route('addtocart',['id'=>$product->id]) }}" class="btn btn-primary add_to_cart_btn">Add to cart</a>
+          <a href="" class="btn add_to_cart_btn">Add to cart</a>
 
+        </div>
+        <div class="col-md-4 product_tutorial">
+          <h4>Tutorials</h4>
+          <ol>
+            <li> <a href="#" target="_blank">Part 1</a> </li>
+            <li> <a href="#" target="_blank">Part 2</a> </li>
+          </ol>
         </div>
 
       </div>
@@ -91,7 +97,7 @@
                 <!-- For main discussion-->
                 <div class="card-header d-flex">
                   <div class="user_img">
-                    <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                   </div>
                   <div class="user_name">
                     <h5>Jugal Kishore Chanda</h5>
@@ -128,7 +134,7 @@
                     <div class="card">
                       <div class="card-header d-flex">
                         <div class="user_img">
-                          <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                         </div>
                         <div class="user_name">
                           <h5>Jugal Kishore Chanda</h5>
@@ -142,7 +148,7 @@
                     <div class="card">
                       <div class="card-header d-flex">
                         <div class="user_img">
-                          <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                         </div>
                         <div class="user_name">
                           <h5>Jugal Kishore Chanda</h5>
@@ -162,7 +168,7 @@
                 <!-- For main discussion-->
                 <div class="card-header d-flex">
                   <div class="user_img">
-                    <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                   </div>
                   <div class="user_name">
                     <h5>Jugal Kishore Chanda</h5>
@@ -199,7 +205,7 @@
                     <div class="card">
                       <div class="card-header d-flex">
                         <div class="user_img">
-                          <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                         </div>
                         <div class="user_name">
                           <h5>Jugal Kishore Chanda</h5>
@@ -213,7 +219,7 @@
                     <div class="card">
                       <div class="card-header d-flex">
                         <div class="user_img">
-                          <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                         </div>
                         <div class="user_name">
                           <h5>Jugal Kishore Chanda</h5>
@@ -259,7 +265,7 @@
             <div class="card">
               <div class="card-header d-flex">
                 <div class="user_img">
-                  <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                 </div>
                 <div class="user_name d-flex align-items-center ml-2">
                   <h5>Jugal Kishore Chanda</h5>
@@ -273,7 +279,7 @@
             <div class="card">
               <div class="card-header d-flex">
                 <div class="user_img">
-                  <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                 </div>
                 <div class="user_name d-flex align-items-center ml-2">
                   <h5>Jugal Kishore Chanda</h5>
@@ -287,7 +293,7 @@
             <div class="card">
               <div class="card-header d-flex">
                 <div class="user_img">
-                  <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                 </div>
                 <div class="user_name d-flex align-items-center ml-2">
                   <h5>Jugal Kishore Chanda</h5>
@@ -301,7 +307,7 @@
             <div class="card">
               <div class="card-header d-flex">
                 <div class="user_img">
-                  <img src="{{ asset('custom/img/home/avatar6.png')}}" alt="">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
                 </div>
                 <div class="user_name d-flex align-items-center ml-2">
                   <h5>Jugal Kishore Chanda</h5>
@@ -318,11 +324,12 @@
       </div>
 
 
-    </div>
+    </section>
+
 @endsection
 
 
-@section('customjs')
+@section('js')
 
 <script type="text/javascript">
 

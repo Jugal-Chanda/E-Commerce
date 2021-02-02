@@ -1,6 +1,6 @@
 @extends('layouts.home')
 @section('customcss')
-<link rel="stylesheet" href="{{ asset('custom/css/home/mycart.css') }}">
+<link rel="stylesheet" href="{{ asset('custom/css/mycart.css') }}">
 @endsection
 @section('content')
     <div class="container pt-2">

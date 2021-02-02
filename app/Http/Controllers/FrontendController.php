@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use App\Offer;
 use Session;
 
 class FrontendController extends Controller
@@ -20,11 +21,34 @@ class FrontendController extends Controller
         {
           $cart_count = 0;
         }
-        return view('home',['categories'=>Category::all(),'products'=>Product::all(),'cart_count'=> $cart_count]);
+        return view('index',['categories'=>Category::all(),'products'=>Product::paginate(2),'cart_count'=> $cart_count]);
+    }
+    public function profile()
+    {
+      return view('profile.profile');
+    }
+    public function profileEdit($value='')
+    {
+      return view('profile.edit');
+    }
+    public function offers()
+    {
+      $offers = Offer::orderBy('created_at','desc')->get()->unique('stock_id');
+      return view('offers',['offers'=>$offers]);
+
     }
     public function productSingle(Product $product)
     {
-      return view('productSingle',['product'=>$product]);
+      $cart = Session::get('cart');
+      if($cart)
+      {
+        $cart_count = count(Session::get('cart'));
+      }
+      else
+      {
+        $cart_count = 0;
+      }
+      return view('productSingle',['product'=>$product,'cart_count'=> $cart_count]);
     }
     public function addToCart($id)
     {
@@ -77,7 +101,15 @@ class FrontendController extends Controller
     public function myCart()
     {
         $carts = Session::get('cart');
-        return view('mycart')->with('carts',$carts);
+        if($carts)
+        {
+          $cart_count = count(Session::get('cart'));
+        }
+        else
+        {
+          $cart_count = 0;
+        }
+        return view('mycart',['cart_count'=> $cart_count,'carts'=>$carts]);
     }
     public function increaseQuantity ($id)
     {

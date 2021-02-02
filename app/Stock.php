@@ -14,4 +14,17 @@ class Stock extends Model
     {
         return $this->belongsTo('App\Product');
     }
+    public function offer()
+    {
+      return $this->hasOne(Offer::class);
+    }
+
+    public function hasOffer()
+    {
+      if($this->offer != null)
+      {
+        return true;
+      }
+      return false;
+    }
 }

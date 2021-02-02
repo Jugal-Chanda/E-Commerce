@@ -102,7 +102,10 @@
                     <li class="list-group-item">
                       <a href="{{ route('admin.orders') }}" style="text-decoration: none;">Orders</a>
                     </li>
-
+                    <li class="list-group-item">
+                      <a href="{{ route('offer.create') }}" style="text-decoration: none;">Create Offers</a>
+                    </li>
+                    
 
                   </ul>
                 </div>

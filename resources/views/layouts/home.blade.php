@@ -1,54 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zontrotech</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ec2b217e3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('custom/css/style.css') }}">
+    @yield('css')
+  </head>
+  <body>
+    <header class="container">
+      <!-- Header 1 -->
+      <div class="header1">
+        <div class="call">
+          Call: +8801521461643
+        </div>
+        <div class="login_registration">
+          @guest
+            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+          @if (Route::has('register'))
+            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+          @endif
+          @else
+            <a  href="#" >{{ Auth::user()->name }} <span class="caret"></span></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+              @csrf
+              <input type="submit" name="" value="{{ __('Logout') }}">
+            </form>
+          @endguest
+        </div>
+      </div>
+      <!-- Header 1 End -->
 
+      <!-- Header 2 -->
+      <div class="row">
+        <div class="col-lg-4 justify-content-center logo_div_container">
+          <div class="logo_container">
+            <img src="{{asset('custom/img/logo.png')}}" alt="">
+          </div>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/9ec2b217e3.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{{ asset('custom/css/home/style.css') }}">
-        @yield('customcss')
-    </head>
-    <body>
-        <header class="container">
-            <div class="">
-                <div class="bg-dark text-white py-1">
-                    <div class="row no-gutters">
-                        <div class="col-md-6 text-sm-center text-md-left">
-                            Call +880-12345-12345
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-right">
-                              @guest
-                                      <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                                  @if (Route::has('register'))
-                                          <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                                  @endif
-                              @else
-                                      <a  href="#" >{{ Auth::user()->name }} <span class="caret"></span></a>
-                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
-                                          @csrf
-                                          <input type="submit" name="" value="{{ __('Logout') }}">
-                                      </form>
-                              @endguest
-                                <!-- <a href="" class="top_nav_link">My Profile</a>
-                                <a href="" class="top_nav_link">Login</a>
-                                <a href="route()" class="top_nav_link">Register</a> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <nav class="navbar navbar-expand-lg main_nav">
-                <a class="navbar-brand" href="#"><img src="{{ asset('custom/img/home/amex.png') }}" alt=""></a>
+        </div>
+        <div class="col-lg-8 d-flex align-items-center">
+          <!-- <div class="bg-danger" style="width: 200px; height: 20px;">
+          </div> -->
+          <nav class="navbar navbar-expand-lg main_nav">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <!-- <span class="navbar-toggler-icon"></span> -->
                   <i class="fas fa-sliders-h"></i>
@@ -60,16 +59,13 @@
                       <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item top_nav_item">
-                      <a class="nav-link" href="#">Profile </a>
+                      <a class="nav-link" href="{{ route('profile') }}">Profile</a>
+                    </li>
+                    <li class="nav-item top_nav_item" >
+                      <a class="nav-link" href="#" style="color: #ff3900; font-size: 18px; background-color: rgba(0, 105, 204,0.6); border-radius: 9px;">Tutorials</a>
                     </li>
                     <li class="nav-item top_nav_item">
-                      <a class="nav-link" href="#">Category</a>
-                    </li>
-                    <li class="nav-item top_nav_item">
-                      <a class="nav-link" href="#">Tutorials</a>
-                    </li>
-                    <li class="nav-item top_nav_item">
-                      <a class="nav-link" href="#">Offer</a>
+                      <a class="nav-link" href="{{ route('offers') }}">Offer</a>
                     </li>
                     <li class="nav-item top_nav_item">
                       <a class="nav-link" href="#">Training Courses</a>
@@ -77,50 +73,26 @@
                     <li class="nav-item top_nav_item">
                       <a class="nav-link" href="{{ route('mycart') }}">My Carts</a>
                     </li>
-
-                    <!-- <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Carts
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right cart_dropdown" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">
-                          <img src="app/img/book1.png" alt="" class="cart_dropdown_product_img">
-                          <span class="ml-2">Book1</span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <img src="app/img/book1.png" alt="" class="cart_dropdown_product_img">
-                          <span class="ml-2">Book1</span>
-                        </a><a class="dropdown-item" href="#">
-                          <img src="app/img/book1.png" alt="" class="cart_dropdown_product_img">
-                          <span class="ml-2">Book1</span>
-                        </a><a class="dropdown-item" href="#">
-                          <img src="app/img/book1.png" alt="" class="cart_dropdown_product_img">
-                          <span class="ml-2">Book1</span>
-                        </a><a class="dropdown-item" href="#">
-                          <img src="app/img/book1.png" alt="" class="cart_dropdown_product_img">
-                          <span class="ml-2">Book1</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </li> -->
-
                   </ul>
                 </div>
             </nav>
-        </header>
 
-        <section class="container mt-1">
-            @yield('content')
+        </div>
 
-        </section>
+      </div>
+      <!-- Header 2 end-->
+      </div>
 
-        <footer>
+    </header>
+
+    @yield('content')
+
+    <footer>
             <div class="container mt-2 footer">
                 <div class="row no-gutters">
                     <div class="col-md-4 col-lg-3">
                         <div class="footer_logo">
-                            <a class="" href="#"><img src="{{ asset('custom/img/home/amex.png') }}" alt=""></a>
+                            <a class="" href="#"><img src="{{ asset('custom/img/logo.png') }}" alt=""></a>
                         </div>
                         <div class="details mt-2">
                             <span><i class="fas fa-map-marker-alt"></i></span>
@@ -166,8 +138,9 @@
                 </div>
             </div>
         </footer>
-        <script type="text/javascript" src="{{ asset('custom/js/home/javascript.js') }}"></script>
-        @yield('customjs')
 
-    </body>
+
+      @yield('js')
+
+  </body>
 </html>

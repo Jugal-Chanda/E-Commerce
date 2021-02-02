@@ -15,7 +15,7 @@ class Product extends Model
   }
   public function stocks()
   {
-      return $this->hasMany('App\Stock');
+      return $this->hasMany('App\Stock')->whereRaw('quantity > sold')->orderBy('created_at');
   }
   public function hasStockRow()
     {
@@ -33,7 +33,7 @@ class Product extends Model
         if($this->hasStockRow())
         {
             $stocks = $this->stocks();
-            $temp = $stocks->where('quantity','>',0);
+            $temp = $stocks->whereRaw('quantity > sold');
             if($temp->count())
             {
                 return $temp->first()->selling_price;
@@ -43,6 +43,12 @@ class Product extends Model
                 return $this->stocks->last()->selling_price;
             }
         }
+        return 9999;
+    }
+
+    public function offerPrice($price,$discountPercentage)
+    {
+      return $price-($price*($discountPercentage/100));
     }
 
     public function hasStock()
