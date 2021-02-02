@@ -14,17 +14,23 @@ class Stock extends Model
     {
         return $this->belongsTo('App\Product');
     }
-    public function offer()
+    public function offers()
     {
-      return $this->hasOne(Offer::class);
+      return $this->hasMany(Offer::class);
     }
 
     public function hasOffer()
     {
-      if($this->offer != null)
+      if($this->offers->count())
       {
         return true;
       }
       return false;
     }
+    public function offerPrice()
+    {
+
+      $offer = $this->offers()->latest()->first();
+      return $this->selling_price - ($this->selling_price * ($offer->percentage/100));
+     }
 }

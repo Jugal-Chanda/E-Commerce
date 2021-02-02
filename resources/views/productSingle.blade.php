@@ -65,8 +65,9 @@
         <div class="col-md-4 product_tutorial">
           <h4>Tutorials</h4>
           <ol>
-            <li> <a href="#" target="_blank">Part 1</a> </li>
-            <li> <a href="#" target="_blank">Part 2</a> </li>
+            @foreach($product->toutorials as $toutorial)
+            <li> <a href="#" target="_blank">{{ $toutorial->name }}</a> </li>
+            @endforeach
           </ol>
         </div>
 

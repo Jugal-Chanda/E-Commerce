@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\Offer;
+use App\Stock;
 use Session;
 
 class FrontendController extends Controller
@@ -21,7 +22,8 @@ class FrontendController extends Controller
         {
           $cart_count = 0;
         }
-        return view('index',['categories'=>Category::all(),'products'=>Product::paginate(2),'cart_count'=> $cart_count]);
+        $stocks = Stock::whereRaw('quantity > sold')->orderBy('created_at')->distinct('product_id');
+        return view('index',['categories'=>Category::all(),'stocks'=>$stocks->paginate(2),'cart_count'=> $cart_count]);
     }
     public function profile()
     {

@@ -17,6 +17,11 @@ class Product extends Model
   {
       return $this->hasMany('App\Stock')->whereRaw('quantity > sold')->orderBy('created_at');
   }
+
+  public function toutorials()
+  {
+    return $this->belongsToMany('App\Toutorial');
+  }
   public function hasStockRow()
     {
         $id = $this->id;

@@ -41,6 +41,8 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
     Route::get('/order/{order}','OrderController@orderSingle')->name('admin.order.single');
     Route::get('/offers/create','OfferController@create')->name('offer.create');
     Route::post('/offers/store','OfferController@store')->name('offer.store');
+    Route::get('/toutorials/create','ToutorialController@create')->name('toutorials.create');
+    Route::post('/toutorials/store','ToutorialController@store')->name('toutorials.store');
 });
 
 Auth::routes();

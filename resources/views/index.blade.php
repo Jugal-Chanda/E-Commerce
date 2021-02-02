@@ -3,29 +3,34 @@
 @section('css')
 
 <link rel="stylesheet" href="{{asset('custom/css/home.css')}}">
+<style media="screen">
+.strike{
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+</style>
 
 @endsection
 
 @section('content')
 <section class="container mt-3">
       <div class="row mb-3">
-      <div class="col-md-8">
-        <form class="">
+        <div class="col-md-8">
+          <form class="">
             <div class="search_input_btn_container">
-                <input type="text" name="" value="" class="form-control search_input" placeholder="Search your product here">
-                <button type="button" name="button" class="btn search_btn"><i class="fa fa-search fa-lg " aria-hidden="true"></i></button>
+              <input type="text" name="" value="" class="form-control search_input" placeholder="Search your product here">
+              <button type="button" name="button" class="btn search_btn"><i class="fa fa-search fa-lg " aria-hidden="true"></i></button>
             </div>
-        </form>
-      </div>
-      <div class="col-md-4 cart_icon_container">
-        <div class="cart_icon">
-          <a href="{{ route('mycart') }}"><i class="fas fa-shopping-cart fa-lg"></i></a>
-          <div class="cart_count">
-            {{ $cart_count }}
+          </form>
+        </div>
+        <div class="col-md-4 cart_icon_container">
+          <div class="cart_icon">
+            <a href="{{ route('mycart') }}"><i class="fas fa-shopping-cart fa-lg"></i></a>
+            <div class="cart_count">
+              {{ $cart_count }}
+            </div>
           </div>
         </div>
-
-      </div>
       </div>
       <div class="row">
         <div class="col-md-3">
@@ -76,20 +81,24 @@
         </div>
         <div class="col-md-9">
           <div class="row">
-            @foreach($products as $product)
+            @foreach($stocks as $stock)
             <div class="col-md-3 product_container mb-2">
               <div class="product py-2">
                 <div class="product_image">
-                  <a href="{{ route('productSingle',['product'=>$product->id]) }}"><img src="{{ asset($product->image1) }}" alt="Product1"></a>
+                  <a href="{{ route('productSingle',['product'=>$stock->product->id]) }}"><img src="{{ asset($stock->product->image1) }}" alt="Product1"></a>
                 </div>
                 <div class="product_sort_description">
-                  {{ $product->name }}
+                  {{ $stock->product->name }}
                 </div>
                 <div class="product_price">
-                  ৳ {{ $product->price() }} Tk
+                  @if($stock->hasOffer())
+                  ৳ <span class="strike">{{ $stock->product->price() }}</span> {{ $stock->offerPrice() }}Tk
+                  @else
+                    ৳ {{ $stock->product->price() }}Tk
+                  @endif
                 </div>
                 <div class="add_to_cart">
-                  <a href="{{ route('addtocart',['id'=>$product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
+                  <a href="{{ route('addtocart',['id'=>$stock->product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
                 </div>
 
               </div>
@@ -97,7 +106,7 @@
             @endforeach
 
           </div>
-          {{ $products->onEachSide(3)->links() }}
+          {{ $stocks->onEachSide(3)->links() }}
 
         </div>
 
