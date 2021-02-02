@@ -524,6 +524,7 @@ class ComposerStaticInitf6a422fe797be740366f6ae579faee46
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Stock' => __DIR__ . '/../..' . '/app/Stock.php',
         'App\\Toutorial' => __DIR__ . '/../..' . '/app/Toutorial.php',
+        'App\\Toutorial_Part' => __DIR__ . '/../..' . '/app/Toutorial_Part.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',

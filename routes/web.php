@@ -43,6 +43,8 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
     Route::post('/offers/store','OfferController@store')->name('offer.store');
     Route::get('/toutorials/create','ToutorialController@create')->name('toutorials.create');
     Route::post('/toutorials/store','ToutorialController@store')->name('toutorials.store');
+    Route::get('/parts/create','ToutorialPartController@create')->name('parts.create');
+    Route::post('/parts/store','ToutorialPartController@store')->name('parts.store');
 });
 
 Auth::routes();

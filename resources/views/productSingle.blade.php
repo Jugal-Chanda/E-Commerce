@@ -64,6 +64,8 @@
         </div>
         <div class="col-md-4 product_tutorial">
           <h4>Tutorials</h4>
+          <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
+          <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
           <ol>
             @foreach($product->toutorials as $toutorial)
             <li> <a href="#" target="_blank">{{ $toutorial->name }}</a> </li>
