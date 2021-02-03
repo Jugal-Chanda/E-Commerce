@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','FrontendController@home')->name('home');
+Route::get('/category/{category}','FrontendController@categoryWiseProduct')->name('category.product');
 Route::get('/product/{product}','FrontendController@productSingle')->name('productSingle');
 Route::get('/addtocart/{id}','FrontendController@addToCart')->name('addtocart');
 Route::get('/mycart','FrontendController@myCart')->name('mycart');

@@ -11,6 +11,10 @@ use Session;
 
 class FrontendController extends Controller
 {
+    public function categoryWiseProduct(Category $category)
+    {
+      return view('category',['categories'=>Category::all(),'products'=>$category->products()->paginate(2)]);
+    }
     public function home()
     {
         $cart = Session::get('cart');
@@ -25,6 +29,7 @@ class FrontendController extends Controller
         $stocks = Stock::whereRaw('quantity > sold')->orderBy('created_at')->distinct('product_id');
         return view('index',['categories'=>Category::all(),'stocks'=>$stocks->paginate(2),'cart_count'=> $cart_count]);
     }
+
     public function profile()
     {
       return view('profile.profile');

@@ -81,32 +81,34 @@
         </div>
         <div class="col-md-9">
           <div class="row">
-            @foreach($stocks as $stock)
+            @foreach($products as $product)
+            @if($product->hasStockRow())
             <div class="col-md-3 product_container mb-2">
               <div class="product py-2">
                 <div class="product_image">
-                  <a href="{{ route('productSingle',['product'=>$stock->product->id]) }}"><img src="{{ asset($stock->product->image1) }}" alt="Product1"></a>
+                  <a href="{{ route('productSingle',['product'=>$product->id]) }}"><img src="{{ asset($product->image1) }}" alt="Product1"></a>
                 </div>
                 <div class="product_sort_description">
-                  {{ $stock->product->name }}
+                  {{ $product->name }}
                 </div>
                 <div class="product_price">
-                  @if($stock->hasOffer())
-                  ৳ <span class="strike">{{ $stock->product->price() }}</span> {{ $stock->offerPrice() }}Tk
+                  @if($product->stocks->first()->hasOffer())
+                  ৳ <span class="strike">{{ $product->price() }}</span> {{ $product->stocks->first()->offerPrice() }}Tk
                   @else
-                    ৳ {{ $stock->product->price() }}Tk
+                    ৳ {{ $product->price() }}Tk
                   @endif
                 </div>
                 <div class="add_to_cart">
-                  <a href="{{ route('addtocart',['id'=>$stock->product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
+                  <a href="{{ route('addtocart',['id'=>$product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
                 </div>
 
               </div>
             </div>
+            @endif
             @endforeach
 
           </div>
-          {{ $stocks->onEachSide(3)->links() }}
+          {{ $products->onEachSide(3)->links() }}
 
         </div>
 
