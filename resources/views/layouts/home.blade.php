@@ -61,13 +61,10 @@
                 </li>
 
                 <li class="nav-item top_nav_item">
-                  <a class="nav-link" href="#">Tutorials</a>
+                  <a class="nav-link" href="{{ route('toutorials') }}">Tutorials</a>
                 </li>
                 <li class="nav-item top_nav_item">
                   <a class="nav-link" href="{{ route('offers') }}">Offer</a>
-                </li>
-                <li class="nav-item top_nav_item">
-                  <a class="nav-link" href="#">Training Courses</a>
                 </li>
                 <li class="nav-item top_nav_item">
                   <a class="nav-link" href="{{ route('mycart') }}">My Carts</a>

@@ -22,6 +22,7 @@ Route::get('/increaseqty/{id}','FrontendController@increaseQuantity')->name('inc
 Route::get('/decreaseqty/{id}','FrontendController@decreaseQuantity')->name('decreaseqty');
 Route::get('/deletefromcart/{id}','FrontendController@deleteFromCart')->name('deletefromcart');
 Route::get('/offers','FrontendController@offers')->name('offers');
+Route::get('/toutorials','FrontendController@toutorials')->name('toutorials');
 
 Route::group(['middleware'=>'auth'],function(){
   route::get('/profiles','FrontendController@profile')->name('profile');
