@@ -34,6 +34,10 @@ img {
   background-color: rgba(48,155,255,0.4);
   border-radius: 2px;
 }
+.cart_icon:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
 
 .search_input {
     border: none;

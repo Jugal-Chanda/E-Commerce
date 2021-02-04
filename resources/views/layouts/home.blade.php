@@ -69,6 +69,14 @@
                 <li class="nav-item top_nav_item">
                   <a class="nav-link" href="{{ route('mycart') }}">My Carts</a>
                 </li>
+                <li class="cart_icon_container">
+                  <div class="cart_icon">
+                    <a href="{{ route('mycart') }}"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                    <div class="cart_count">
+                      {{ $cart_count }}
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
           </nav>

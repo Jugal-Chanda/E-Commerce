@@ -15,7 +15,7 @@
 @section('content')
 <section class="container mt-3">
       <div class="row mb-3">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <form class="">
             <div class="search_input_btn_container">
               <input type="text" name="" value="" class="form-control search_input" placeholder="Search your product here">
@@ -23,14 +23,7 @@
             </div>
           </form>
         </div>
-        <div class="col-md-4 cart_icon_container">
-          <div class="cart_icon">
-            <a href="{{ route('mycart') }}"><i class="fas fa-shopping-cart fa-lg"></i></a>
-            <div class="cart_count">
-              {{ $cart_count }}
-            </div>
-          </div>
-        </div>
+
       </div>
       <div class="row">
         <div class="col-md-3">

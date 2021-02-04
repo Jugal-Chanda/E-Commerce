@@ -30,6 +30,15 @@ class FrontendController extends Controller
         $stocks = Stock::whereRaw('quantity > sold')->orderBy('created_at')->distinct('product_id');
         return view('index',['categories'=>Category::all(),'stocks'=>$stocks->paginate(2),'cart_count'=> $cart_count]);
     }
+
+    // public function search()
+    // {
+    //     $pro
+    //     $stocks = Stock::whereRaw('quantity > sold')->orderBy('created_at')->distinct('product_id');
+    //     return view('index',['categories'=>Category::all(),'stocks'=>$stocks->paginate(2),'cart_count'=> $cart_count]);
+    // }
+
+
     public function toutorials()
     {
       return view('toutorials',['toutorials'=>Toutorial::all()]);
