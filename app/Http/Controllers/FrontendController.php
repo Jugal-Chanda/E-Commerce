@@ -27,8 +27,11 @@ class FrontendController extends Controller
         {
           $cart_count = 0;
         }
-        $stocks = Stock::whereRaw('quantity > sold')->orderBy('created_at')->distinct('product_id');
-        return view('index',['categories'=>Category::all(),'stocks'=>$stocks->paginate(2),'cart_count'=> $cart_count]);
+        $products = Product::all();
+        $products = $products->sortByDesc(function ($product){
+          return $product->ordered->sum('quantity');
+        });
+        return view('index',['categories'=>Category::all(),'products'=>$products->take(8),'cart_count'=> $cart_count]);
     }
 
     // public function search()
