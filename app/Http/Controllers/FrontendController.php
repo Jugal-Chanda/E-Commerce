@@ -63,6 +63,15 @@ class FrontendController extends Controller
     public function addToCart($id)
     {
         $product = Product::find($id);
+        $product_price = 0;
+        if($product->hasStock()){
+          if($product->stock()->hasOffer()){
+            $temp =  $product->price();
+            $product_price = $temp['offer'];
+          }else{
+            $product_price = $temp['original'];
+          }
+        }
         $cart = Session::get('cart');
         if($product->hasStock())
         {
@@ -75,14 +84,13 @@ class FrontendController extends Controller
                         $id => [
                             "name" => $product->name,
                             "quantity" => 1,
-                            "price" => $product->price(),
+                            "price" => $product_price,
                             "photo" => $product->image1
                         ]
                 ];
 
                 Session::put('cart', $cart);
-
-                return redirect()->back()->with('cartCount', 1);
+                return redirect()->back();
             }
 
             // if cart not empty then check if this product exist then increment quantity
@@ -92,7 +100,7 @@ class FrontendController extends Controller
 
                 Session::put('cart', $cart);
 
-                return redirect()->back()->with('cartCount',count($cart));
+                return redirect()->back();
 
             }
 
@@ -100,26 +108,18 @@ class FrontendController extends Controller
             $cart[$id] = [
                 "name" => $product->name,
                 "quantity" => 1,
-                "price" => $product->price(),
+                "price" => $product_price,
                 "photo" => $product->image1
             ];
 
             Session::put('cart', $cart);
         }
-        return redirect()->back()->with('cartCount',$cart?count($cart):0);;
+        return redirect()->back();
     }
     public function myCart()
     {
         $carts = Session::get('cart');
-        if($carts)
-        {
-          $cart_count = count(Session::get('cart'));
-        }
-        else
-        {
-          $cart_count = 0;
-        }
-        return view('mycart',['cart_count'=> $cart_count,'carts'=>$carts]);
+        return view('mycart',['carts'=>$carts]);
     }
     public function increaseQuantity ($id)
     {
