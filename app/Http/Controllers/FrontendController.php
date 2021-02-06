@@ -13,30 +13,26 @@ use Session;
 
 class FrontendController extends Controller
 {
-    public function categoryWiseProduct(Category $category)
-    {
-      $products = $category->products();
-      return view('category',['categories'=>Category::all(),'products'=>$products->paginate(2)]);
-    }
+
     public function home()
     {
-        $cart = Session::get('cart');
-        if($cart)
-        {
-          $cart_count = count(Session::get('cart'));
-        }
-        else
-        {
-          $cart_count = 0;
-        }
+
         $products = Product::all();
         $products = $products->sortByDesc(function ($product){
           return $product->ordered->sum('quantity');
         });
         $toutorials = Toutorial_Part::orderBy('created_at',"DESC")->get();
-        return view('index',['categories'=>Category::all(),'products'=>$products->take(12),'cart_count'=> $cart_count,'toutorials'=>$toutorials->take(6)]);
+        return view('index',['categories'=>Category::all(),'products'=>$products->take(12),'toutorials'=>$toutorials->take(6)]);
     }
-
+    public function categoryWiseProduct(Category $category)
+    {
+      $products = $category->products();
+      return view('category',['categories'=>Category::all(),'products'=>$products->paginate(2)]);
+    }
+    public function productSingle(Product $product)
+    {
+      return view('productSingle',['product'=>$product]);
+    }
     // public function search()
     // {
     //     $pro
@@ -63,19 +59,7 @@ class FrontendController extends Controller
       return view('offers',['offers'=>$offers]);
 
     }
-    public function productSingle(Product $product)
-    {
-      $cart = Session::get('cart');
-      if($cart)
-      {
-        $cart_count = count(Session::get('cart'));
-      }
-      else
-      {
-        $cart_count = 0;
-      }
-      return view('productSingle',['product'=>$product,'cart_count'=> $cart_count]);
-    }
+
     public function addToCart($id)
     {
         $product = Product::find($id);

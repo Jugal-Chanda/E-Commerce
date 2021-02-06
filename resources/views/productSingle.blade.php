@@ -15,7 +15,7 @@
 <section class="container">
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 product_image">
 
           <div class="img-zoom-container ">
             <div class="product_single_main_image">
@@ -32,7 +32,7 @@
           </div>
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 product_description">
           <h2 class="text-capitalize">{{ $product->name }}</h2>
           <h4 class="text-capitalize">{{ $product->category->name }}</h4>
           <table class="text-capitalize">
@@ -41,14 +41,10 @@
               <td>: {{ $product->model }}</td>
             </tr>
             <tr>
-              <td>brand</td>
-              <td>: {{ $product->brand }}</td>
-            </tr>
-            <tr>
               <td>Product in stock</td>
 
                 @if($product->hasStock())
-                   <td>: {{ $product->stocks()->where('quantity','>',0)->first()->quantity }}</td>
+                   <td>: {{ $product->stock()->quantity - $product->stock()->sold}}</td>
                 @else
                    <td class="text-danger">: Out Of Stock</td>
                 @endif
@@ -58,23 +54,37 @@
               <td>: <a href="" class="btn btn-link p-0 m-0">{{ $product->category->name }}</a> </td>
             </tr>
           </table>
-          <h4 class="text-success my-2"> {{ $product->price() }} tk</h4>
-          <a href="" class="btn add_to_cart_btn">Add to cart</a>
+          @if($product->hasStock())
+            @if($product->stock()->hasOffer())
+            <div class="product_price product_offer">
+              <span>{{ $product->priceShow("original") }}</span>
+              {{ $product->priceShow("offer") }}
+            </div>
+            @else
+            <div class="product_price">
+              {{ $product->priceShow("original") }}
+            </div>
+            @endif
+          @else
+          <div class="product_out_of_stock">
+            {{ $product->priceShow("original") }}
+          </div>
+          @endif
+          <a href="{{ route('addtocart',['id'=>$product->id]) }}" class="btn add_to_cart_btn">Add to cart</a>
 
         </div>
         <div class="col-md-4 product_tutorial">
           <h4>Tutorials</h4>
             @foreach($product->toutorials as $key=>$toutorial)
-            @if($key < 2 )
-              @if($toutorial->hasParts())
-              <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/{{ $toutorial->parts[0]->code }}" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
+              @if($key < 2 )
+                @if($toutorial->hasParts())
+                <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/{{ $toutorial->parts[0]->code }}" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
+                @else
+                <a href="#" target="_blank"> <span class="pl-2">{{ $key }}.</span> {{ $toutorial->name }}(Comming Soon)</a><br>
+                @endif
               @else
-              <a href="#" target="_blank"> <span class="pl-2">{{ $key }}.</span> {{ $toutorial->name }}(Comming Soon)</a><br>
+              <a href="#" target="_blank">{{ $toutorial->name }}</a><br>
               @endif
-            @else
-            <a href="#" target="_blank">{{ $toutorial->name }}</a><br>
-            @endif
-
             @endforeach
         </div>
 
