@@ -24,12 +24,23 @@
             <div class="product_sort_description">
               {{ $offer->stock->product->name }}
             </div>
-            <div class="product_price">
-              <div class="offer text-danger">
-                <h6>{{$offer->percentage}}% Discount</h6>
+            @if($offer->stock->product->hasStock())
+              @if($offer->stock->product->stock()->hasOffer())
+              <div class="product_price product_offer">
+                <span>{{ $offer->stock->product->priceShow("original") }}</span>
+                {{ $offer->stock->product->priceShow("offer") }}
               </div>
-                ৳ <s>{{ $offer->stock->product->price() }}</s> {{ $offer->stock->product->offerPrice($offer->stock->product->price(),$offer->percentage) }}Tk
+              @else
+              <div class="product_price">
+                {{ $offer->stock->product->priceShow("original") }}
+              </div>
+              @endif
+            @else
+            <div class="product_out_of_stock">
+              {{ $offer->stock->product->priceShow("original") }}
             </div>
+            @endif
+
             <div class="add_to_cart">
               <a href="{{ route('addtocart',['id'=>$offer->stock->product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
             </div>
