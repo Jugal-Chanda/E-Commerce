@@ -15,7 +15,8 @@ class FrontendController extends Controller
 {
     public function categoryWiseProduct(Category $category)
     {
-      return view('category',['categories'=>Category::all(),'products'=>$category->products()->paginate(2)]);
+      $products = $category->products();
+      return view('category',['categories'=>Category::all(),'products'=>$products->paginate(2)]);
     }
     public function home()
     {
