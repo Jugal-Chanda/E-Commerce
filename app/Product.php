@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+  
   protected $fillable = [
       'name', 'model', 'description', 'brand','image1','image2','image3','image4','category_id'
   ];
@@ -21,6 +22,10 @@ class Product extends Model
   public function toutorials()
   {
     return $this->belongsToMany('App\Toutorial');
+  }
+  public function ordered()
+  {
+    return $this->hasMany('App\OderProduct');
   }
   public function hasStockRow()
     {
