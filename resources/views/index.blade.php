@@ -23,7 +23,6 @@
             </div>
           </form>
         </div>
-
       </div>
       <div class="row">
         <div class="col-md-3">
@@ -74,6 +73,10 @@
         </div>
         <div class="col-md-9">
           <div class="row">
+            <div class="col-12 text-center">
+              <h3 class="">Best Sell Products</h3>
+              <hr>
+            </div>
             @foreach($products as $product)
             <div class="col-md-3 product_container mb-2">
               <div class="product py-2">
@@ -83,9 +86,56 @@
                 <div class="product_sort_description">
                   {{ $product->name }}
                 </div>
-                <div class="product_price">
-                    ৳ {{ $product->price() }}Tk
+                @if($product->hasStock())
+                  @if($product->stock()->hasOffer())
+                  <div class="product_price product_offer">
+                    <span>{{ $product->priceShow("original") }}</span>
+                    {{ $product->priceShow("offer") }}
+                  </div>
+                  @else
+                  <div class="product_price">
+                    {{ $product->priceShow("original") }}
+                  </div>
+                  @endif
+                @else
+                <div class="product_out_of_stock">
+                  {{ $product->priceShow("original") }}
                 </div>
+                @endif
+
+                <div class="add_to_cart">
+                  <a href="{{ route('addtocart',['id'=>$product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
+                </div>
+
+              </div>
+            </div>
+            @endforeach
+            @foreach($products as $product)
+            <div class="col-md-3 product_container mb-2">
+              <div class="product py-2">
+                <div class="product_image">
+                  <a href="{{ route('productSingle',['product'=>$product->id]) }}"><img src="{{ asset($product->image1) }}" alt="Product1"></a>
+                </div>
+                <div class="product_sort_description">
+                  {{ $product->name }}
+                </div>
+                @if($product->hasStock())
+                  @if($product->stock()->hasOffer())
+                  <div class="product_price product_offer">
+                    <span>{{ $product->priceShow("original") }}</span>
+                    {{ $product->priceShow("offer") }}
+                  </div>
+                  @else
+                  <div class="product_price">
+                    {{ $product->priceShow("original") }}
+                  </div>
+                  @endif
+                @else
+                <div class="product_out_of_stock">
+                  {{ $product->priceShow("original") }}
+                </div>
+                @endif
+
                 <div class="add_to_cart">
                   <a href="{{ route('addtocart',['id'=>$product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
                 </div>
@@ -94,8 +144,22 @@
             </div>
             @endforeach
 
+
           </div>
-          
+
+          <div class="row">
+            <div class="col-12 text-center">
+              <h3>Latest Toutorials</h3>
+              <hr>
+            </div>
+            @foreach($toutorials as $toutorial)
+            <div class="col-md-6">
+              <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/{{ $toutorial->code }}" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
+              <h5>{{ $toutorial->title }}</h5>
+            </div>
+            @endforeach
+          </div>
+
 
         </div>
 

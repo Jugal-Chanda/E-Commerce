@@ -8,6 +8,7 @@ use App\Product;
 use App\Offer;
 use App\Stock;
 use App\Toutorial;
+use App\Toutorial_Part;
 use Session;
 
 class FrontendController extends Controller
@@ -31,7 +32,8 @@ class FrontendController extends Controller
         $products = $products->sortByDesc(function ($product){
           return $product->ordered->sum('quantity');
         });
-        return view('index',['categories'=>Category::all(),'products'=>$products->take(8),'cart_count'=> $cart_count]);
+        $toutorials = Toutorial_Part::orderBy('created_at',"DESC")->get();
+        return view('index',['categories'=>Category::all(),'products'=>$products->take(12),'cart_count'=> $cart_count,'toutorials'=>$toutorials->take(6)]);
     }
 
     // public function search()

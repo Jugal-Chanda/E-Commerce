@@ -16,21 +16,19 @@ class Stock extends Model
     }
     public function offers()
     {
-      return $this->hasMany(Offer::class);
+      return $this->hasMany(Offer::class)->orderBy('created_at',"DESC");
     }
-
+    public function offer()
+    {
+      $offers = $this->offers;
+      return $offers->first();
+    }
     public function hasOffer()
     {
-      if($this->offers->count())
-      {
+      if($this->offer()){
         return true;
+      }else{
+        return false;
       }
-      return false;
     }
-    public function offerPrice()
-    {
-
-      $offer = $this->offers()->latest()->first();
-      return $this->selling_price - ($this->selling_price * ($offer->percentage/100));
-     }
 }
