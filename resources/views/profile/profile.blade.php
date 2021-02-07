@@ -17,6 +17,10 @@
         <td>{{ Auth::user()->phone }}</td>
       </tr>
       <tr>
+        <td>Address</td>
+        <td>{{ Auth::user()->address }}</td>
+      </tr>
+      <tr>
         <td>Email</td>
         <td>{{ Auth::user()->email }}</td>
       </tr>

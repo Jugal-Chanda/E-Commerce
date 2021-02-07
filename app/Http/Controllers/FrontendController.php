@@ -9,6 +9,7 @@ use App\Offer;
 use App\Stock;
 use App\Toutorial;
 use App\Toutorial_Part;
+use Auth;
 use Session;
 
 class FrontendController extends Controller
@@ -52,6 +53,21 @@ class FrontendController extends Controller
     public function profileEdit($value='')
     {
       return view('profile.edit');
+    }
+    public function profileUpdate(Request $request)
+    {
+      $validatedData = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'phone' => ['required'],
+        'address' => ['required']
+      ]);
+      $user = Auth::user();
+      $user->name = $validatedData['name'];
+      $user->phone = $validatedData['phone'];
+      $user->address = $validatedData['address'];
+      Session::flash('status',"Profile updated Successfully");
+      return redirect()->back();
+
     }
     public function offers()
     {

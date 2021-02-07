@@ -28,6 +28,7 @@ Route::get('/toutorials','FrontendController@toutorials')->name('toutorials');
 Route::group(['middleware'=>'auth'],function(){
   route::get('/profiles','FrontendController@profile')->name('profile');
   route::get('/profiles/edit','FrontendController@profileEdit')->name('profile.edit');
+  route::post('/profiles/update','FrontendController@profileUpdate')->name('profile.update');
 });
 
 
