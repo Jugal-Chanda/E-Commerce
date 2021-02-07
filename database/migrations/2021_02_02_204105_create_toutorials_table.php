@@ -18,6 +18,7 @@ class CreateToutorialsTable extends Migration
             $table->text('name');
             $table->string('thumbnail');
             $table->text('description');
+            $table->boolean("visible")->default(1);
             $table->timestamps();
         });
     }

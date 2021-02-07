@@ -102,13 +102,17 @@
                     <li class="list-group-item">
                       <a href="{{ route('parts.create') }}" style="text-decoration: none;">Add Vedio Parts</a>
                     </li>
-                    
+
                     <li class="list-group-item">
                       <a href="{{ route('category.index') }}" style="text-decoration: none;">Categories</a>
                     </li>
 
                     <li class="list-group-item">
                       <a href="{{ route('product.index') }}" style="text-decoration: none;">Products</a>
+                    </li>
+
+                    <li class="list-group-item">
+                      <a href="{{ route('toutorials.index') }}" style="text-decoration: none;">Toutorials</a>
                     </li>
 
                     <li class="list-group-item">

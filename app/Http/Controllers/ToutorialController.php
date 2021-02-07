@@ -16,7 +16,7 @@ class ToutorialController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.toutorials.index',['toutorials'=>Toutorial::all()]);
     }
 
     /**
@@ -37,16 +37,26 @@ class ToutorialController extends Controller
      */
     public function store(Request $request)
     {
+      $uploadPath = "upload/toutorials/";
       $validatedData = $request->validate([
         'name' => 'required',
-        'product'=>'required'
+        'description' => 'required',
+        'thumbnail' => 'required',
       ]);
 
-      $toutorial = new Toutorial;
-      $toutorial->name = $validatedData['name'];
-      $toutorial->save();
-      $toutorial->products()->attach($request->product);
+      $image = $request->thumbnail;
+      $image_new_name = time().$image->getClientOriginalName();
+      $image->move($uploadPath,$image_new_name);
 
+      $toutorial = Toutorial::create([
+        'name' => $validatedData['name'],
+        'description' => $validatedData['description'],
+        'thumbnail' => $uploadPath.$image_new_name,
+      ]);
+      if($request->product){
+        $toutorial->products()->attach($request->product);
+      }
+      Session::flash('status','Toutorial Playlist added successfully');
       return redirect()->back();
     }
 
@@ -58,7 +68,7 @@ class ToutorialController extends Controller
      */
     public function show(Toutorial $toutorial)
     {
-        //
+        return view('admin.toutorials.show',['toutorial'=>$toutorial]);
     }
 
     /**
@@ -69,7 +79,7 @@ class ToutorialController extends Controller
      */
     public function edit(Toutorial $toutorial)
     {
-        //
+        return view('admin.toutorials.edit',['toutorial'=>$toutorial,'products'=>Product::all()]);
     }
 
     /**
@@ -81,7 +91,23 @@ class ToutorialController extends Controller
      */
     public function update(Request $request, Toutorial $toutorial)
     {
-        //
+      $uploadPath = "upload/toutorials/";
+      $validatedData = $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+      ]);
+      $toutorial->name = $validatedData['name'];
+      $toutorial->description = $validatedData['description'];
+
+      if($request['thumbnail']){
+        $image = $request->thumbnail;
+        $image_new_name = time().$image->getClientOriginalName();
+        $image->move($uploadPath,$image_new_name);
+        $toutorial->thumbnail = $uploadPath.$image_new_name;
+      }
+      $toutorial->products()->attach($request->product);
+      Session::flash('status','Toutorial Playlist Updated successfully');
+      return redirect()->back();
     }
 
     /**
@@ -92,6 +118,7 @@ class ToutorialController extends Controller
      */
     public function destroy(Toutorial $toutorial)
     {
-        //
+      $toutorial->delete();
+      return redirect()->back();
     }
 }

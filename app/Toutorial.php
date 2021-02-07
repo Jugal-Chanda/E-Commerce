@@ -12,7 +12,7 @@ class Toutorial extends Model
         'thumbnail',
         'description',
     ];
-    
+
     public function products()
     {
       return $this->belongsToMany('App\Product');

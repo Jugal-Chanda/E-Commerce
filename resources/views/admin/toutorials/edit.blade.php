@@ -26,15 +26,16 @@
                 </div>
             @endif
 
-            <form class="" action="{{ route('toutorials.store') }}" method="post" enctype="multipart/form-data">
+            <form class="" action="{{ route('toutorials.update',['toutorial'=>$toutorial]) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="form-group">
                   <label for="">Toutorial Name</label>
-                  <input type="text" name="name" value="" required class="form-control">
+                  <input type="text" name="name" value="{{ $toutorial->name }}" required class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
-                    <textarea name="description" rows="8" cols="80" class="form-control" id="description"></textarea>
+                    <textarea name="description" rows="8" cols="80" class="form-control" id="description">{{ $toutorial->description }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="">Thumbnail</label>
@@ -44,7 +45,14 @@
                 <label for="">Select Products</label>
                 <div class="form-group">
                   @foreach($products as $product)
-                  <input type="checkbox" name="product[]" value="{{ $product->id }}" id="{{ $product->id }}"> <label for="{{ $product->id }}">{{ $product->name }}</label><br>
+                  <input type="checkbox" name="product[]" value="{{ $product->id }}" id="{{ $product->id }}"
+                  @foreach($toutorial->parts as $p)
+                    @if($product->id == $p->product_id)
+                    checked
+                    @endif
+                  @endforeach
+
+                  > <label for="{{ $product->id }}">{{ $product->name }}</label><br>
                   @endforeach
                 </div>
                 <div class="d-flex justify-content-center">

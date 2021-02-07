@@ -40,12 +40,12 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
     Route::resource('/category', 'CategoryController');
     Route::resource('/product', 'ProductController');
     Route::resource('/stock','StockController');
+    Route::resource('/toutorials','ToutorialController');
+
     Route::get('/orders','OrderController@adminOrders')->name('admin.orders');
     Route::get('/order/{order}','OrderController@orderSingle')->name('admin.order.single');
     Route::get('/offers/create','OfferController@create')->name('offer.create');
     Route::post('/offers/store','OfferController@store')->name('offer.store');
-    Route::get('/toutorials/create','ToutorialController@create')->name('toutorials.create');
-    Route::post('/toutorials/store','ToutorialController@store')->name('toutorials.store');
     Route::get('/parts/create','ToutorialPartController@create')->name('parts.create');
     Route::post('/parts/store','ToutorialPartController@store')->name('parts.store');
 });
