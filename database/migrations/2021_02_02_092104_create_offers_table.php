@@ -19,6 +19,7 @@ class CreateOffersTable extends Migration
             $table->double('percentage',5,2)->default(0.0);
             $table->text('title')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('visible')->default(1);
             $table->timestamps();
         });
     }
