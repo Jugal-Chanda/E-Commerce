@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="card">
-        <div class="card-header">Add new product</div>
+        <div class="card-header">Edit of {{ $product->name }} (Model: {{ $product->model }})</div>
 
         <div class="card-body">
             @if (count($errors) >0)
@@ -25,19 +25,20 @@
                 </div>
             @endif
 
-            <form class="" action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+            <form class="" action="{{ route('product.update',['product'=>$product]) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="form-group">
                     <label for="">Product Name</label>
-                    <input type="text" name="name" value="" class="form-control">
+                    <input type="text" name="name" value="{{ $product->name }}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Model</label>
-                    <input type="text" name="model" value="" class="form-control">
+                    <input type="text" name="model" value="{{ $product->model }}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
-                    <textarea name="description" rows="8" cols="80" class="form-control" id="description"></textarea>
+                    <textarea name="description" rows="8" cols="80" class="form-control" id="description" >{{ $product->description }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="">Image1</label>
@@ -59,7 +60,7 @@
                     <label for="">Select Category</label>
                     <select class="form-control" name="category_id">
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" @if($product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
                         @endforeach
 
                     </select>

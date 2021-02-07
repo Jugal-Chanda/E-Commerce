@@ -85,32 +85,37 @@
                       <a href="{{ route('adminDashboard') }}" style="text-decoration: none;">Home</a>
                     </li>
                     <li class="list-group-item">
-                      <a href="{{ route('category.create') }}" style="text-decoration: none;">Create Category</a>
-                    </li>
-                    <li class="list-group-item">
-                      <a href="{{ route('category.index') }}" style="text-decoration: none;">Categories</a>
+                      <a href="{{ route('category.create') }}" style="text-decoration: none;">Add Category</a>
                     </li>
                     <li class="list-group-item">
                       <a href="{{ route('product.create') }}" style="text-decoration: none;">Add Product</a>
                     </li>
                     <li class="list-group-item">
-                      <a href="{{ route('product.index') }}" style="text-decoration: none;">Products</a>
-                    </li>
-                    <li class="list-group-item">
                       <a href="{{ route('stock.create') }}" style="text-decoration: none;">Add Stock</a>
                     </li>
                     <li class="list-group-item">
-                      <a href="{{ route('admin.orders') }}" style="text-decoration: none;">Orders</a>
+                      <a href="{{ route('offer.create') }}" style="text-decoration: none;">Add Offers</a>
                     </li>
                     <li class="list-group-item">
-                      <a href="{{ route('offer.create') }}" style="text-decoration: none;">Create Offers</a>
-                    </li>
-                    <li class="list-group-item">
-                      <a href="{{ route('toutorials.create') }}" style="text-decoration: none;">Create Toutorials</a>
+                      <a href="{{ route('toutorials.create') }}" style="text-decoration: none;">Add Toutorials</a>
                     </li>
                     <li class="list-group-item">
                       <a href="{{ route('parts.create') }}" style="text-decoration: none;">Add Vedio Parts</a>
                     </li>
+                    
+                    <li class="list-group-item">
+                      <a href="{{ route('category.index') }}" style="text-decoration: none;">Categories</a>
+                    </li>
+
+                    <li class="list-group-item">
+                      <a href="{{ route('product.index') }}" style="text-decoration: none;">Products</a>
+                    </li>
+
+                    <li class="list-group-item">
+                      <a href="{{ route('admin.orders') }}" style="text-decoration: none;">Orders</a>
+                    </li>
+
+
 
 
                   </ul>

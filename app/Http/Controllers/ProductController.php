@@ -96,7 +96,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.product.edit',['product'=>$product,'categories'=> Category::all()]);
     }
 
     /**
@@ -108,7 +108,48 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+      $uploadPath = "upload/products/";
+
+      $this->validate($request,[
+          'name'=> 'required',
+          'model' => 'required',
+          'description' => 'required',
+          'category_id' => 'required',
+      ]);
+      $product->name = $request->name;
+      $product->model = $request->model;
+      $product->description = $request->description;
+      $product->category_id = $request->category_id;
+
+      if($request['image1']){
+        $image1 = $request->image1;
+        $image1_new_name = time().$image1->getClientOriginalName();
+        $image1->move('upload/products',$image1_new_name);
+        $product->image1 = $uploadPath.$image1_new_name;
+      }
+
+      if($request['image2']){
+        $image1 = $request->image2;
+        $image1_new_name = time().$image1->getClientOriginalName();
+        $image1->move('upload/products',$image1_new_name);
+        $product->image2 = $uploadPath.$image1_new_name;
+      }
+      if($request['image3']){
+        $image1 = $request->image3;
+        $image1_new_name = time().$image1->getClientOriginalName();
+        $image1->move('upload/products',$image1_new_name);
+        $product->image3 = $uploadPath.$image1_new_name;
+      }
+
+      if($request['image4']){
+        $image1 = $request->image4;
+        $image1_new_name = time().$image1->getClientOriginalName();
+        $image1->move('upload/products',$image1_new_name);
+        $product->image4 = $uploadPath.$image1_new_name;
+      }
+      $product->save();
+      Session::flash('status',$product->name." Updated");
+      return redirect()->back();
     }
 
     /**
