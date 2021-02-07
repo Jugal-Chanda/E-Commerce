@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Toutorial extends Model
 {
     //
-
+    protected $fillable = [
+        'name',
+        'thumbnail',
+        'description',
+    ];
+    
     public function products()
     {
       return $this->belongsToMany('App\Product');

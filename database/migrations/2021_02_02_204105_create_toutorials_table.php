@@ -16,6 +16,8 @@ class CreateToutorialsTable extends Migration
         Schema::create('toutorials', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->string('thumbnail');
+            $table->text('description');
             $table->timestamps();
         });
     }
