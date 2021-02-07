@@ -67,7 +67,6 @@ class ProductController extends Controller
           'name' => $request->name,
           'model' => $request->model,
           'description' => $request->description,
-          'brand' => $request->brand,
           'image1' => 'upload/products/'.$image1_new_name,
           'image2' => 'upload/products/'.$image2_new_name,
           'image3' => 'upload/products/'.$image3_new_name,
