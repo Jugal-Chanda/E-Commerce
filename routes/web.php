@@ -25,15 +25,19 @@ Route::get('/deletefromcart/{id}','FrontendController@deleteFromCart')->name('de
 Route::get('/offers','FrontendController@offers')->name('offers');
 Route::get('/toutorials','FrontendController@toutorials')->name('toutorials');
 
+
 Route::group(['middleware'=>'auth'],function(){
+  Route::get('/order/procede','FrontendController@checkout')->name('checkout');
+  Route::post('/order/placeorder','OrderController@placeorder')->name('order.placeorder');
+  Route::get('/monerecipt/{order}','FrontendController@moneyRecipt')->name('moneyRecipt');
+  Route::get('/orders','FrontendController@orders')->name('orders');
   route::get('/profiles','FrontendController@profile')->name('profile');
   route::get('/profiles/edit','FrontendController@profileEdit')->name('profile.edit');
   route::post('/profiles/update','FrontendController@profileUpdate')->name('profile.update');
 });
 
 
-Route::get('/order/procede','FrontendController@checkout')->name('checkout');
-Route::post('/order/placeorder','OrderController@placeorder')->name('order.placeorder');
+
 
 Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
     // For admin Category

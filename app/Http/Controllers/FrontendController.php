@@ -9,6 +9,7 @@ use App\Offer;
 use App\Stock;
 use App\Toutorial;
 use App\Toutorial_Part;
+use App\Order;
 use Auth;
 use Session;
 
@@ -17,17 +18,29 @@ class FrontendController extends Controller
 
     public function home()
     {
-
+      if(isset($_GET['search'])){
+        $products = Product::where('name','like','%' . $_GET['search'] . '%')->get();
+        $products = $products->sortByDesc(function ($product){
+          return $product->ordered->sum('quantity');
+        });
+      }else{
         $products = Product::all();
         $products = $products->sortByDesc(function ($product){
           return $product->ordered->sum('quantity');
         });
+      }
+
+
         $toutorials = Toutorial_Part::orderBy('created_at',"DESC")->get();
         return view('index',['categories'=>Category::all(),'products'=>$products->take(12),'toutorials'=>$toutorials->take(6)]);
     }
     public function categoryWiseProduct(Category $category)
     {
       $products = $category->products();
+      if(isset($_GET['search'])){
+        $products = $products->where('name','like','%' . $_GET['search'] . '%');
+      }
+
       return view('category',['categories'=>Category::all(),'products'=>$products->paginate(2)]);
     }
     public function productSingle(Product $product)
@@ -40,6 +53,23 @@ class FrontendController extends Controller
     //     $stocks = Stock::whereRaw('quantity > sold')->orderBy('created_at')->distinct('product_id');
     //     return view('index',['categories'=>Category::all(),'stocks'=>$stocks->paginate(2),'cart_count'=> $cart_count]);
     // }
+    public function orders()
+    {
+      $user = Auth::user();
+      if($user->customer){
+        $customer = $user->customer;
+        $orders = Order::where('customer_id',$customer->id)->get();
+        return view('profile.orders',['orders'=>$orders]);
+
+      }else{
+        return redirect()->back();
+      }
+    }
+
+    public function moneyRecipt(Order $order)
+    {
+      return view('profile.moneyrecipt',['order'=>$order]);
+    }
 
 
     public function toutorials()
@@ -81,8 +111,8 @@ class FrontendController extends Controller
         $product = Product::find($id);
         $product_price = 0;
         if($product->hasStock()){
+          $temp =  $product->price();
           if($product->stock()->hasOffer()){
-            $temp =  $product->price();
             $product_price = $temp['offer'];
           }else{
             $product_price = $temp['original'];

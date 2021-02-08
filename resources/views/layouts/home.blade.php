@@ -13,28 +13,21 @@
     @yield('css')
   </head>
   <body>
-    <header class="container">
-      <!-- Header 1 -->
-      <div class="header1">
-        <div class="call">
-          Call: +8801521461643
-        </div>
-        <div class="login_registration">
-          @guest
-            <a href="{{ route('login') }}">{{ __('Login') }}</a>
-          @if (Route::has('register'))
-            <a href="{{ route('register') }}">{{ __('Register') }}</a>
-          @endif
-          @else
-            <a  href="#" >{{ Auth::user()->name }} <span class="caret"></span></a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
-              @csrf
-              <input type="submit" name="" value="{{ __('Logout') }}">
-            </form>
-          @endguest
-        </div>
+    <div class="bg-light py-2 pl-2">
+      <div class="container">
+        @guest
+        Welcome visitor
+          <a href="{{ route('login') }}"> {{ __('Login') }}</a>
+        @if (Route::has('register'))
+          <a href="{{ route('register') }}"> / {{ __('Register') }}</a>
+        @endif
+        @else
+          Welcome {{ Auth::user()->name }}
+        @endguest
       </div>
-
+    </div>
+    <header class="container mb-2">
+      <!-- Header 1 -->
       <div class="row">
         <div class="col-lg-4 justify-content-center logo_div_container">
           <div class="logo_container">
@@ -89,7 +82,7 @@
 
     @yield('content')
 
-    <footer>
+    <footer class="mt-5">
             <div class="container mt-2 footer">
                 <div class="row no-gutters">
                     <div class="col-md-4 col-lg-3">

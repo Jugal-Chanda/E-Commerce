@@ -27,14 +27,14 @@ class OrderController extends Controller
       ]);
       $user = User::firstOrCreate(
           ['email' => $request->email],
-          ['name' =>  $request->full_name]
+          ['name' =>  $request->full_name],
+          ['phone' => $request->phone],
+          ['address' => $request->address],
       );
 
       $customer = Customer::firstOrCreate(
           ['user_id' => $user->id],
           [
-              'phone' => $request->phone,
-              'address' => $request->address,
               'town_city' => $request->town_city,
               'state_country' => $request->state_country,
               'postcode_zip' => $request->postcode_zip,
