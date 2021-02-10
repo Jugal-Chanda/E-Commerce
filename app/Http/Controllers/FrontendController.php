@@ -15,6 +15,15 @@ use Session;
 
 class FrontendController extends Controller
 {
+  private function cartCount()
+  {
+    $cart = app('session')->get('cart');
+    if(is_null($cart))
+    {
+      return 0;
+    }
+    return count($cart);
+  }
 
     public function home()
     {
@@ -30,9 +39,13 @@ class FrontendController extends Controller
         });
       }
 
-
         $toutorials = Toutorial_Part::orderBy('created_at',"DESC")->get();
-        return view('index',['categories'=>Category::all(),'products'=>$products->take(12),'toutorials'=>$toutorials->take(6)]);
+        return view('index',[
+          'categories'=>Category::orderBy('name')->get(),
+          'products'=>$products->take(12),
+          'toutorials'=>$toutorials->take(6),
+          'cart_count' => $this->cartCount()
+        ]);
     }
     public function categoryWiseProduct(Category $category)
     {
@@ -41,11 +54,18 @@ class FrontendController extends Controller
         $products = $products->where('name','like','%' . $_GET['search'] . '%');
       }
 
-      return view('category',['categories'=>Category::all(),'products'=>$products->paginate(2)]);
+      return view('category',[
+        'categories'=>Category::all(),
+        'products'=>$products->paginate(2),
+        'cart_count' =>$this->cartCount()
+      ]);
     }
     public function productSingle(Product $product)
     {
-      return view('productSingle',['product'=>$product]);
+      return view('productSingle',[
+        'product'=>$product,
+        'cart_count' =>$this->cartCount()
+      ]);
     }
     // public function search()
     // {
@@ -59,7 +79,10 @@ class FrontendController extends Controller
       if($user->customer){
         $customer = $user->customer;
         $orders = Order::where('customer_id',$customer->id)->get();
-        return view('profile.orders',['orders'=>$orders]);
+        return view('profile.orders',[
+          'orders'=>$orders,
+          'cart_count' =>$this->cartCount()
+        ]);
 
       }else{
         return redirect()->back();
@@ -68,21 +91,27 @@ class FrontendController extends Controller
 
     public function moneyRecipt(Order $order)
     {
-      return view('profile.moneyrecipt',['order'=>$order]);
+      return view('profile.moneyrecipt',[
+        'order'=>$order,
+        'cart_count' =>$this->cartCount()
+      ]);
     }
 
 
     public function toutorials()
     {
-      return view('toutorials',['toutorials'=>Toutorial::all()]);
+      return view('toutorials',[
+        'toutorials'=>Toutorial::all(),
+        'cart_count' =>$this->cartCount()
+      ]);
     }
     public function profile()
     {
-      return view('profile.profile');
+      return view('profile.profile',['cart_count' =>$this->cartCount()]);
     }
-    public function profileEdit($value='')
+    public function profileEdit()
     {
-      return view('profile.edit');
+      return view('profile.edit',['cart_count' =>$this->cartCount()]);
     }
     public function profileUpdate(Request $request)
     {
@@ -102,7 +131,10 @@ class FrontendController extends Controller
     public function offers()
     {
       $offers = Offer::orderBy('created_at','desc')->get()->unique('stock_id');
-      return view('offers',['offers'=>$offers]);
+      return view('offers',[
+        'offers'=>$offers,
+        'cart_count' =>$this->cartCount()
+      ]);
 
     }
 
@@ -165,7 +197,10 @@ class FrontendController extends Controller
     public function myCart()
     {
         $carts = Session::get('cart');
-        return view('mycart',['carts'=>$carts]);
+        return view('mycart',[
+          'carts'=>$carts,
+          'cart_count' =>$this->cartCount()
+        ]);
     }
     public function increaseQuantity ($id)
     {
@@ -174,17 +209,18 @@ class FrontendController extends Controller
 
         Session::put('cart', $carts);
 
-        return redirect()->back()->with('cartCount',count($carts));
+        return redirect()->back();
     }
 
     public function decreaseQuantity ($id)
     {
         $carts = Session::get('cart');
-        $carts[$id]['quantity']--;
-
+        if($carts[$id]['quantity'] != 1){
+          $carts[$id]['quantity']--;
+        }
         Session::put('cart', $carts);
 
-        return redirect()->back()->with('cartCount',count($carts));
+        return redirect()->back();
     }
 
     public function deleteFromCart($id)
@@ -204,6 +240,9 @@ class FrontendController extends Controller
         if(!count($carts)){
             return redirect()->back();
         }
-        return view('checkout')->with('carts',$carts);
+        return view('checkout',[
+          'carts'=>$carts,
+          'cart_count' =>$this->cartCount()
+        ]);
     }
 }

@@ -40,12 +40,16 @@ Route::group(['middleware'=>'auth'],function(){
 
 
 Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
-    // For admin Category
+
     Route::get('/','AdminController@index')->name('adminDashboard');
     Route::resource('/category', 'CategoryController');
     Route::resource('/product', 'ProductController');
     Route::resource('/stock','StockController');
     Route::resource('/toutorials','ToutorialController');
+
+    Route::get('/order/confirm/{order}','OrderController@confirm')->name('order.confirm');
+    Route::get('/order/decline/{order}','OrderController@decline')->name('order.decline');
+    Route::get('/order/delivered/{order}','OrderController@delivered')->name('order.delivered');
 
     Route::get('/orders','OrderController@adminOrders')->name('admin.orders');
     Route::get('/order/{order}','OrderController@orderSingle')->name('admin.order.single');

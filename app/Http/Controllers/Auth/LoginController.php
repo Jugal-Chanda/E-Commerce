@@ -38,7 +38,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    private function cartCount()
+    {
+      $cart = app('session')->get('cart');
+      if(is_null($cart))
+      {
+        return 0;
+      }
+      return count($cart);
+    }
+    public function showLoginForm()
+    {
+      return view('auth.login',['cart_count'=>$this->cartCount()]);
+    }
     public function login(Request $request)
     {
         $inputVal = $request->all();

@@ -504,6 +504,7 @@ class ComposerStaticInitf6a422fe797be740366f6ae579faee46
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\StockController' => __DIR__ . '/../..' . '/app/Http/Controllers/StockController.php',
         'App\\Http\\Controllers\\ToutorialController' => __DIR__ . '/../..' . '/app/Http/Controllers/ToutorialController.php',
+        'App\\Http\\Controllers\\ToutorialPartController' => __DIR__ . '/../..' . '/app/Http/Controllers/ToutorialPartController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Admin' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

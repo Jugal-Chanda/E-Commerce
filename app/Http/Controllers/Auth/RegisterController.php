@@ -58,6 +58,21 @@ class RegisterController extends Controller
         ]);
     }
 
+    private function cartCount()
+    {
+      $cart = app('session')->get('cart');
+      if(is_null($cart))
+      {
+        return 0;
+      }
+      return count($cart);
+    }
+
+    public function showRegistrationForm()
+    {
+      return view('auth.register',['cart_count'=>$this->cartCount()]);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *

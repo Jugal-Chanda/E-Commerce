@@ -23,11 +23,11 @@
                 </tr>
                 <tr>
                   <td>Customer Phone:</td>
-                  <td>{{ $order->customer->phone }}</td>
+                  <td>{{ $order->customer->user->phone }}</td>
                 </tr>
                 <tr>
-                  <td>Customer Phone:</td>
-                  <td>{{ $order->customer->address }}</td>
+                  <td>Customer Address:</td>
+                  <td>{{ $order->customer->user->address }}</td>
                 </tr>
               </table>
 
@@ -41,7 +41,6 @@
                         <th scope="col">#</th>
                         <th scope="col">Product Id</th>
                         <th>Name</th>
-                        <th>Brand</th>
                         <th>Model</th>
                         <th>Qty</th>
                         <th>Price</th>
@@ -53,7 +52,6 @@
                     <td>{{ $loop->index+1 }}</td>
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->product->name }}</td>
-                    <td>{{ $product->product->brand }}</td>
                     <td>{{ $product->product->model }}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>{{ $product->price }}</td>

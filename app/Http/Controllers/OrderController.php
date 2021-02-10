@@ -65,10 +65,35 @@ class OrderController extends Controller
 
   public function adminOrders()
   {
-    return view('admin.orders',['orders'=>Order::all()]);
+    $orders = Order::where('status','1')->orWhereNull('status')->orderBy('status','asc')->orderBy('delivered','asc')->orderBy('created_at','DESC')->get();
+    return view('admin.orders',['orders'=>$orders]);
   }
   public function orderSingle(Order $order)
   {
     return view('admin.orderSingle',['order'=>$order]);
+  }
+
+  public function confirm(Order $order)
+  {
+    $order->status = true;
+    $order->save();
+    Session::flash('status',$order->order_no." is confirmed.");
+    return redirect()->route('admin.orders');
+  }
+
+  public function decline(Order $order)
+  {
+    $order->status = false;
+    $order->save();
+    Session::flash('status',$order->order_no." is declined.");
+    return redirect()->route('admin.orders');
+  }
+
+  public function delivered(Order $order)
+  {
+    $order->delivered = true;
+    $order->save();
+    Session::flash('status',$order->order_no." is delivered.");
+    return redirect()->route('admin.orders');
   }
 }

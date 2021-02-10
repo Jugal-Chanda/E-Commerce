@@ -26,15 +26,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-      $cart = Session::get('cart');
-      if($cart)
-      {
-        $cart_count = count(Session::get('cart'));
-      }
-      else
-      {
-        $cart_count = 0;
-      }
-      View::share('cart_count', $cart_count);
+      // $cart = app('session')->get('cart');
+      // print_r("hello");
+      // if(is_null($cart))
+      // {
+      //   $cart_count = 100;
+      //
+      //   // $cart_count = 10;
+      // }
+      // else
+      // {
+      //   $cart_count = count($cart);
+      // }
+      // View::share('cart_count', $cart_count);
     }
 }
