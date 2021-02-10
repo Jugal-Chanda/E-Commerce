@@ -66,7 +66,11 @@
                   <div class="cart_icon">
                     <a href="{{ route('mycart') }}"><i class="fas fa-shopping-cart fa-lg"></i></a>
                     <div class="cart_count">
+                      @if(isset($cart_count))
                       {{ $cart_count }}
+                      @else
+                      0
+                      @endif
                     </div>
                   </div>
                 </li>
