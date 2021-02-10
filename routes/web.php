@@ -26,7 +26,7 @@ Route::get('/offers','FrontendController@offers')->name('offers');
 Route::get('/toutorials','FrontendController@toutorials')->name('toutorials');
 
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>['auth','verified']],function(){
   Route::get('/order/procede','FrontendController@checkout')->name('checkout');
   Route::post('/order/placeorder','OrderController@placeorder')->name('order.placeorder');
   Route::get('/monerecipt/{order}','FrontendController@moneyRecipt')->name('moneyRecipt');
@@ -39,7 +39,7 @@ Route::group(['middleware'=>'auth'],function(){
 
 
 
-Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
+Route::group(['prefix' => 'admin','middleware' => ['auth','admin','verified']],function(){
 
     Route::get('/','AdminController@index')->name('adminDashboard');
     Route::resource('/category', 'CategoryController');
@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'],function(){
     Route::post('/parts/store','ToutorialPartController@store')->name('parts.store');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 
