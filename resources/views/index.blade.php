@@ -34,6 +34,11 @@
               <h5>Category</h5>
             </div>
             <ul class="navbar-nav ml-auto">
+              @if($kit)
+              <li class="nav-item side_nav_item bg-info text-uppercase" >
+                <a class="nav-link" href="{{ route('category.product',['category'=>$kit]) }}" style="color: white; font-weight: 600;letter-spacing: 0.1em;">{{ $kit->name }}</a>
+              </li>
+              @endif
               @foreach($categories as $category)
               <li class="nav-item side_nav_item">
                 <a class="nav-link" href="{{ route('category.product',['category'=>$category]) }}">{{ $category->name }}</a>

@@ -58,9 +58,11 @@ class FrontendController extends Controller
           return $product->ordered->sum('quantity');
         });
       }
+      $kit = Category::where('name','kit')->first();
 
         $toutorials = Toutorial_Part::orderBy('created_at',"DESC")->get();
         return view('index',[
+          'kit' => $kit,
           'categories'=>Category::orderBy('name')->get(),
           'products'=>$products->take(12),
           'toutorials'=>$toutorials->take(6),
@@ -74,8 +76,10 @@ class FrontendController extends Controller
       if(isset($_GET['search'])){
         $products = $products->where('name','like','%' . $_GET['search'] . '%');
       }
+      $kit = Category::where('name','kit')->first();
 
       return view('category',[
+        'kit' => $kit,
         'categories'=>Category::all(),
         'products'=>$products->paginate(2),
         'cart_count' =>$this->cartCount()
