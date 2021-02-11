@@ -117,18 +117,37 @@
 
                     <div class="col-md-4 col-lg-4">
                         <h4>Contact Us</h4>
-                        <form class="" action="index.html" method="post">
+                        <form class="" action="{{ route('contact') }}" method="post">
+                          @csrf
                             <div class="form-group">
                                 <label for="name">Your Name</label>
-                                <input type="text" name="" value="" class="form-control contact_us_input" id="name" required>
+                                <input type="text" name="name" value="" class="form-control contact_us_input @error('name') is-invalid @enderror" id="name" required>
+                            @error('name')
+                              <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
                             </div>
                             <div class="form-group">
                                 <label for="email">Your Email</label>
-                                <input type="email" name="" value="" class="form-control contact_us_input" id="email" required>
+                                <input type="email" name="email" value="" class="form-control contact_us_input @error('email') is-invalid @enderror" id="email" required >
+                                @error('email')
+                                  <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="message">Messgae</label>
-                                <textarea name="name" rows="4" cols="80" id="message" class="form-control contact_us_textarea"></textarea>
+                                <textarea name="message" rows="4" cols="80" id="message" class="form-control contact_us_textarea @error('message') is-invalid @enderror" required></textarea>
+                                @error('message')
+                                  <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
+                            </div>
+                            <div class="text-center">
+                              <button type="submit" name="button" class="btn btn-sm btn-success">Send</button>
                             </div>
 
                         </form>

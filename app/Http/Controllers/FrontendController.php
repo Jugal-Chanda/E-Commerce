@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Contact;
 use App\Category;
 use App\Product;
 use App\Offer;
@@ -10,6 +12,7 @@ use App\Stock;
 use App\Toutorial;
 use App\Toutorial_Part;
 use App\Order;
+use App\User;
 use Auth;
 use Session;
 
@@ -25,6 +28,22 @@ class FrontendController extends Controller
     return count($cart);
   }
 
+  public function contact(Request $request)
+  {
+    $validatedData = $request->validate([
+      'name' =>'required',
+      'email'=>'required',
+      'message'=>'required'
+    ]);
+    $user = User::find(7);
+    Mail::send('email.contact',[
+      'msg' => $validatedData['message']
+    ], function ($mail) use ($request){
+      $mail->from($request->email,$request->name);
+      $mail->to(env("MAIL_FROM_ADDRESS"))->subject('Contact Us Message');
+    });
+    return "email sent successfully";
+  }
     public function home()
     {
       if(isset($_GET['search'])){
