@@ -42,7 +42,7 @@ class FrontendController extends Controller
       $mail->from($request->email,$request->name);
       $mail->to(env("MAIL_FROM_ADDRESS"))->subject('Contact Us Message');
     });
-    return "email sent successfully";
+    return redirect()->back();
   }
 
     public function home()
