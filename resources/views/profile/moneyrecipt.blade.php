@@ -16,9 +16,14 @@ img {
 
 <div class="card">
   <div class="card-header">
-    Profile
+    Money Recipt
   </div>
   <div class="card-body">
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
     <table style="width: 100%;" class="header">
       <tr>
         <td>

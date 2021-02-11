@@ -130,6 +130,7 @@ class FrontendController extends Controller
 
     public function profileEdit()
     {
+
       return view('profile.edit',['cart_count' =>$this->cartCount()]);
     }
 
@@ -144,6 +145,7 @@ class FrontendController extends Controller
       $user->name = $validatedData['name'];
       $user->phone = $validatedData['phone'];
       $user->address = $validatedData['address'];
+      $user->save();
       Session::flash('status',"Profile updated Successfully");
       return redirect()->back();
 

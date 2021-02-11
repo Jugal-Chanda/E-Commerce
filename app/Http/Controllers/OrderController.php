@@ -87,6 +87,7 @@ class OrderController extends Controller
 
       $order->total_price = $total;
       $order->save();
+      Session::flash('status',"You product will delivered with in 2 days!!");
       return redirect()->route('moneyRecipt',['order'=>$order]);
   }
 
