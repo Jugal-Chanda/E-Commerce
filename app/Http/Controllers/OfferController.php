@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Offer;
 use App\Stock;
 use Illuminate\Http\Request;
-
+use Session;
 class OfferController extends Controller
 {
     /**
@@ -31,7 +31,7 @@ class OfferController extends Controller
     }
     public function index()
     {
-        //
+        return view('admin.offers.index',['offers'=>Offer::orderBy('created_at')->get()]);
     }
 
     /**
@@ -112,6 +112,8 @@ class OfferController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        //
+      $offer->delete();
+      Session::flash('status',"Offer is deleted");
+      return redirect()->route('offer.index');
     }
 }

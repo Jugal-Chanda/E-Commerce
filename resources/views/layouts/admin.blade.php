@@ -119,6 +119,9 @@
                     <li class="list-group-item">
                       <a href="{{ route('admin.orders') }}" style="text-decoration: none;">Orders</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('offer.index') }}" style="text-decoration: none;">Current Offers</a>
+                    </li>
 
 
 

@@ -56,6 +56,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','admin','verified']],f
     Route::get('/order/{order}','OrderController@orderSingle')->name('admin.order.single');
     Route::get('/offers/create','OfferController@create')->name('offer.create');
     Route::post('/offers/store','OfferController@store')->name('offer.store');
+
+    Route::get('/offers','OfferController@index')->name('offer.index');
+
+    Route::get('/offer/delete/{offer}','OfferController@destroy')->name('offer.delete');
+
     Route::get('/parts/create','ToutorialPartController@create')->name('parts.create');
     Route::post('/parts/store','ToutorialPartController@store')->name('parts.store');
 });
