@@ -113,39 +113,6 @@
                 </div>
               </div>
               @endforeach
-              @foreach($products as $product)
-              <div class="col-md-3 product_container mb-2">
-                <div class="product py-2">
-                  <div class="product_image">
-                    <a href="{{ route('productSingle',['product'=>$product->id]) }}"><img src="{{ asset($product->image1) }}" alt="Product1"></a>
-                  </div>
-                  <div class="product_sort_description">
-                    {{ $product->name }}
-                  </div>
-                  @if($product->hasStock())
-                    @if($product->stock()->hasOffer())
-                    <div class="product_price product_offer">
-                      <span>{{ $product->priceShow("original") }}</span>
-                      {{ $product->priceShow("offer") }}
-                    </div>
-                    @else
-                    <div class="product_price">
-                      {{ $product->priceShow("original") }}
-                    </div>
-                    @endif
-                  @else
-                  <div class="product_out_of_stock">
-                    {{ $product->priceShow("original") }}
-                  </div>
-                  @endif
-
-                  <div class="add_to_cart">
-                    <a href="{{ route('addtocart',['id'=>$product->id]) }}"class="btn add_to_cart_btn">Add to Cart</a>
-                  </div>
-
-                </div>
-              </div>
-              @endforeach
 
 
             </div>

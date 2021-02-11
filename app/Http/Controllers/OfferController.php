@@ -47,8 +47,10 @@ class OfferController extends Controller
           $offer->description  =$request['description'];
           $offer->stock_id = $stock;
           $offer->percentage = $validateData['percentage'];
+          if($request->promo){
+            $offer->promo_code = $request->promo;
+          }
           $offer->save();
-
         }
     }
 

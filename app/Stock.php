@@ -20,7 +20,7 @@ class Stock extends Model
     }
     public function offer()
     {
-      $offers = $this->offers;
+      $offers = $this->offers->WhereNull('promo_code');
       return $offers->first();
     }
     public function hasOffer()

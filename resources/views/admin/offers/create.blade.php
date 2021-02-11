@@ -33,6 +33,10 @@
                   @foreach($stocks as $stock)
                   <input type="checkbox" name="stocks[]" value="{{ $stock->id }}" id="{{ $stock->id }}"> <label for="{{ $stock->id }}">{{ $stock->product->name }}</label><br>
                   @endforeach
+                </div>
+                <div class="">
+                  <label for="">Promo Code</label>
+                  <input type="text" name="promo" value="" id="" class="form-control"> 
 
                 </div>
                 <div class="text-center">

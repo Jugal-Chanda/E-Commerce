@@ -23,7 +23,19 @@
           <td>{{ $order->order_no }}</td>
           <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M y') }}</td>
           <td> <a href="{{ route('moneyRecipt',['order'=>$order]) }}">MoneyRecipt</a> </td>
-          <td class="text-info">Delivered</td>
+          @if(is_null($order->status))
+            <td class="text-info">Pending</td>
+          @else
+            @if($order->status)
+              @if($order->delivered)
+                <td class="text-success">Delivered</td>
+              @else
+                <td class="text-info">Processing</td>
+              @endif
+            @else
+              <td class="text-danger">Canceled</td>
+            @endif
+          @endif
 
         </tr>
         @endforeach

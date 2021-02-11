@@ -7,6 +7,8 @@ use App\User;
 use App\Customer;
 use App\Order;
 use App\OderProduct;
+use App\Offer;
+use Auth;
 use Session;
 
 
@@ -23,8 +25,16 @@ class OrderController extends Controller
           'town_city' => 'required',
           'state_country' => 'required',
           'postcode_zip' => 'required',
-          'payment_method' => 'required'
       ]);
+      $offer = null;
+      if($request->promo){
+        $offer = Offer::where('promo_code',$request->promo)->first();
+        if(is_null($offer)){
+          Session::flash('no_promo',"Your Promo Code is not valid");
+          return redirect()->back();
+        }
+      }
+
       $user = User::firstOrCreate(
           ['email' => $request->email],
           ['name' =>  $request->full_name],
@@ -40,27 +50,37 @@ class OrderController extends Controller
               'postcode_zip' => $request->postcode_zip,
           ]
       );
-      $order  = new Order;
-      $order->customer_id = $customer->id;
-      $order->order_no = time();
-      $order->payment_mathod = $request->payment_method;
-      $order->total_price = 0;
-      $order->save();
-      $total = 50;
-      $cart = Session::get('cart');
-      foreach ($cart as $key => $product) {
-        $orderproduct = new OderProduct;
-        $orderproduct->order_id = $order->id;
-        $orderproduct->product_id = $key;
-        $orderproduct->quantity = $product['quantity'];
-        $orderproduct->price = $product['price'];
-        $total += $orderproduct->quantity*$orderproduct->price;
-        $orderproduct->save();
-      }
-      $order->total_price = $total;
-      $order->save();
-      return view('orderPlaceConfirm');
+      $carts = Session::get('cart');
+      return view('finalCheckout',[
+        'carts'=> $carts,
+        'promo'=>$offer,
+        'delivary' => $request->delivery,
+      ]);
       // dd($order->id);
+  }
+
+  public function finalCheckout($delivary,$total)
+  {
+    // code...
+    $order  = new Order;
+    $user = Auth::user();
+    $order->customer_id = $user->customer->id;
+    $order->order_no = time();
+    $order->payment_mathod = "Cash On";
+    $order->total_price = $total;
+    $order->save();
+    $cart = Session::get('cart');
+    foreach ($cart as $key => $product) {
+      $orderproduct = new OderProduct;
+      $orderproduct->order_id = $order->id;
+      $orderproduct->product_id = $key;
+      $orderproduct->quantity = $product['quantity'];
+      $orderproduct->price = $product['price'];
+      $orderproduct->save();
+    }
+    $order->total_price = $total;
+    $order->save();
+    return redirect()->route('moneyRecipt',['order'=>$order]);
   }
 
   public function adminOrders()

@@ -28,8 +28,8 @@ class FrontendController extends Controller
     return count($cart);
   }
 
-  public function contact(Request $request)
-  {
+    public function contact(Request $request)
+    {
     $validatedData = $request->validate([
       'name' =>'required',
       'email'=>'required',
@@ -44,6 +44,7 @@ class FrontendController extends Controller
     });
     return "email sent successfully";
   }
+
     public function home()
     {
       if(isset($_GET['search'])){
@@ -66,6 +67,7 @@ class FrontendController extends Controller
           'cart_count' => $this->cartCount()
         ]);
     }
+
     public function categoryWiseProduct(Category $category)
     {
       $products = $category->products();
@@ -79,6 +81,7 @@ class FrontendController extends Controller
         'cart_count' =>$this->cartCount()
       ]);
     }
+
     public function productSingle(Product $product)
     {
       return view('productSingle',[
@@ -86,12 +89,7 @@ class FrontendController extends Controller
         'cart_count' =>$this->cartCount()
       ]);
     }
-    // public function search()
-    // {
-    //     $pro
-    //     $stocks = Stock::whereRaw('quantity > sold')->orderBy('created_at')->distinct('product_id');
-    //     return view('index',['categories'=>Category::all(),'stocks'=>$stocks->paginate(2),'cart_count'=> $cart_count]);
-    // }
+
     public function orders()
     {
       $user = Auth::user();
@@ -124,14 +122,17 @@ class FrontendController extends Controller
         'cart_count' =>$this->cartCount()
       ]);
     }
+
     public function profile()
     {
       return view('profile.profile',['cart_count' =>$this->cartCount()]);
     }
+
     public function profileEdit()
     {
       return view('profile.edit',['cart_count' =>$this->cartCount()]);
     }
+
     public function profileUpdate(Request $request)
     {
       $validatedData = $request->validate([
@@ -147,9 +148,10 @@ class FrontendController extends Controller
       return redirect()->back();
 
     }
+
     public function offers()
     {
-      $offers = Offer::orderBy('created_at','desc')->get()->unique('stock_id');
+      $offers = Offer::whereNull('promo_code')->orderBy('created_at','desc')->get()->unique('stock_id');
       return view('offers',[
         'offers'=>$offers,
         'cart_count' =>$this->cartCount()
@@ -213,6 +215,7 @@ class FrontendController extends Controller
         }
         return redirect()->back();
     }
+
     public function myCart()
     {
         $carts = Session::get('cart');
@@ -221,6 +224,7 @@ class FrontendController extends Controller
           'cart_count' =>$this->cartCount()
         ]);
     }
+
     public function increaseQuantity ($id)
     {
         $carts = Session::get('cart');
@@ -260,7 +264,6 @@ class FrontendController extends Controller
             return redirect()->back();
         }
         return view('checkout',[
-          'carts'=>$carts,
           'cart_count' =>$this->cartCount()
         ]);
     }

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zontrotech</title>
+    <link rel="icon" href="{{ asset('custom/img/logo_small.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -83,8 +84,11 @@
       </div>
 
     </header>
+    <div class="bg-light my-3">
+        @yield('content')
+    </div>
 
-    @yield('content')
+
 
     <footer class="mt-5">
             <div class="container mt-2 footer">
@@ -95,11 +99,11 @@
                         </div>
                         <div class="details mt-2">
                             <span><i class="fas fa-map-marker-alt"></i></span>
-                            <p class="">East West University</p>
+                            <p class="">Rampura, Aftabnagar, Dhaka</p>
                         </div>
                         <div class="details mt-2">
                             <span><i class="fas fa-phone-alt"></i></span>
-                            <p class="">+880-12345-12345</p>
+                            <p class="">+880-15213-15386</p>
                         </div>
                         <div class="details mt-2">
                             <span><i class="fas fa-mail-bulk"></i></span>
