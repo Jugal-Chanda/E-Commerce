@@ -12,340 +12,340 @@
 
 @section('content')
 
-<div class="bg-light">
-  <section class="container">
 
-        <div class="row">
-          <div class="col-md-4 product_image">
+<section class="container">
 
-            <div class="img-zoom-container ">
-              <div class="product_single_main_image">
-                <img id="myimage" src="{{ asset($product->image1) }}" class="main_img" alt="Girl">
-              </div>
-              <div id="myresult" class="img-zoom-result"></div>
+      <div class="row">
+        <div class="col-md-4 product_image">
+
+          <div class="img-zoom-container ">
+            <div class="product_single_main_image">
+              <img id="myimage" src="{{ asset($product->image1) }}" class="main_img" alt="Girl">
             </div>
-
-            <div class="product_single_other_image">
-              <img src="{{ asset($product->image1) }}" alt="" id="other_img_1" class="other_img">
-              <img src="{{ asset($product->image2) }}" alt="" id="other_img_2" class="other_img">
-              <img src="{{ asset($product->image3) }}" alt="" id="other_img_3" class="other_img">
-              <img src="{{ asset($product->image4) }}" alt="" id="other_img_4" class="other_img">
-            </div>
-
+            <div id="myresult" class="img-zoom-result"></div>
           </div>
-          <div class="col-md-4 product_description">
-            <h2 class="text-capitalize">{{ $product->name }}</h2>
-            <h4 class="text-capitalize">{{ $product->category->name }}</h4>
-            <table class="text-capitalize">
-              <tr>
-                <td>model</td>
-                <td>: {{ $product->model }}</td>
-              </tr>
-              <tr>
-                <td>Product in stock</td>
 
-                  @if($product->hasStock())
-                     <td>: {{ $product->stock()->quantity - $product->stock()->sold}}</td>
-                  @else
-                     <td class="text-danger">: Out Of Stock</td>
-                  @endif
-              </tr>
-              <tr>
-                <td>Category</td>
-                <td>: <a href="" class="btn btn-link p-0 m-0">{{ $product->category->name }}</a> </td>
-              </tr>
-            </table>
-            @if($product->hasStock())
-              @if($product->stock()->hasOffer())
-              <div class="product_price product_offer">
-                <span>{{ $product->priceShow("original") }}</span>
-                {{ $product->priceShow("offer") }}
-              </div>
-              @else
-              <div class="product_price">
-                {{ $product->priceShow("original") }}
-              </div>
-              @endif
+          <div class="product_single_other_image">
+            <img src="{{ asset($product->image1) }}" alt="" id="other_img_1" class="other_img">
+            <img src="{{ asset($product->image2) }}" alt="" id="other_img_2" class="other_img">
+            <img src="{{ asset($product->image3) }}" alt="" id="other_img_3" class="other_img">
+            <img src="{{ asset($product->image4) }}" alt="" id="other_img_4" class="other_img">
+          </div>
+
+        </div>
+        <div class="col-md-4 product_description">
+          <h2 class="text-capitalize">{{ $product->name }}</h2>
+          <h4 class="text-capitalize">{{ $product->category->name }}</h4>
+          <table class="text-capitalize">
+            <tr>
+              <td>model</td>
+              <td>: {{ $product->model }}</td>
+            </tr>
+            <tr>
+              <td>Product in stock</td>
+
+                @if($product->hasStock())
+                   <td>: {{ $product->stock()->quantity - $product->stock()->sold}}</td>
+                @else
+                   <td class="text-danger">: Out Of Stock</td>
+                @endif
+            </tr>
+            <tr>
+              <td>Category</td>
+              <td>: <a href="" class="btn btn-link p-0 m-0">{{ $product->category->name }}</a> </td>
+            </tr>
+          </table>
+          @if($product->hasStock())
+            @if($product->stock()->hasOffer())
+            <div class="product_price product_offer">
+              <span>{{ $product->priceShow("original") }}</span>
+              {{ $product->priceShow("offer") }}
+            </div>
             @else
-            <div class="product_out_of_stock">
+            <div class="product_price">
               {{ $product->priceShow("original") }}
             </div>
             @endif
-            <a href="{{ route('addtocart',['id'=>$product->id]) }}" class="btn add_to_cart_btn">Add to cart</a>
-
+          @else
+          <div class="product_out_of_stock">
+            {{ $product->priceShow("original") }}
           </div>
-          <div class="col-md-4 product_tutorial">
-            <h4>Tutorials</h4>
-              @foreach($product->toutorials as $key=>$toutorial)
-                @if($key < 2 )
-                  @if($toutorial->hasParts())
-                  <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/{{ $toutorial->parts[0]->code }}" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
-                  @else
-                  <a href="#" target="_blank"> <span class="pl-2">{{ $key }}.</span> {{ $toutorial->name }}(Comming Soon)</a><br>
-                  @endif
+          @endif
+          <a href="{{ route('addtocart',['id'=>$product->id]) }}" class="btn add_to_cart_btn">Add to cart</a>
+
+        </div>
+        <div class="col-md-4 product_tutorial">
+          <h4>Tutorials</h4>
+            @foreach($product->toutorials as $key=>$toutorial)
+              @if($key < 2 )
+                @if($toutorial->hasParts())
+                <iframe  type="text/html" height="200" src="https://www.youtube.com/embed/{{ $toutorial->parts[0]->code }}" frameborder="0" allowfullscreen style="width: 100%;"></iframe>
                 @else
-                <a href="#" target="_blank">{{ $toutorial->name }}</a><br>
+                <a href="#" target="_blank"> <span class="pl-2">{{ $key }}.</span> {{ $toutorial->name }}(Comming Soon)</a><br>
                 @endif
-              @endforeach
-          </div>
-
+              @else
+              <a href="#" target="_blank">{{ $toutorial->name }}</a><br>
+              @endif
+            @endforeach
         </div>
 
-        <div class="mt-5">
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active"  data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">Description</a>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link"  data-toggle="tab" href="#discussion" role="tab" aria-controls="profile" aria-selected="false">Discussion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#review" role="tab" aria-controls="contact" aria-selected="false">Review</a>
-            </li> -->
-          </ul>
-          <div class="tab-content mt-5 text-justify">
-            <div class="tab-pane fade show active " id="description" role="tabpanel" >
+      </div>
 
-              {!! $product->description !!}
+      <div class="mt-5">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active"  data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">Description</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link"  data-toggle="tab" href="#discussion" role="tab" aria-controls="profile" aria-selected="false">Discussion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#review" role="tab" aria-controls="contact" aria-selected="false">Review</a>
+          </li> -->
+        </ul>
+        <div class="tab-content mt-5 text-justify">
+          <div class="tab-pane fade show active " id="description" role="tabpanel" >
+
+            {!! $product->description !!}
+          </div>
+
+
+          <div class="tab-pane fade" id="discussion" role="tabpanel" >
+            <div class="discussion_pannel">
+              <div class="card discussion_single">
+                <!-- For main discussion-->
+                <div class="card-header d-flex">
+                  <div class="user_img">
+                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                  </div>
+                  <div class="user_name">
+                    <h5>Jugal Kishore Chanda</h5>
+                  </div>
+                </div>
+
+                <div class="card-body bg-light">
+
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                  <div class="reply_btn">
+                    <button class="btn btn-link see_replies" data-reply-id="disid01"><span>0 Reply</span> </button>
+                    <button class="btn btn-link reply_a_discussion" data-reply-form-id="rf-disid01">Reply</button>
+                  </div>
+                  <div id="disid01" class="collapse ml-2">
+                    <div class="card discussion_reply" id="rf-disid01">
+                      <div class="card-body bg-light ">
+                        <form class="" action="" method="post">
+                          <input type="text" name="discussion_id" value="01" hidden>
+                          <div class="form-group">
+                            <label for="">Name</label>
+                            <input type="text" name="" value="" class="form-control">
+                          </div>
+                          <div class="form-group">
+                            <label for="">Your problem description</label>
+                            <textarea name="name" rows="8" cols="80" class="form-control"></textarea>
+
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+
+                    <div class="card">
+                      <div class="card-header d-flex">
+                        <div class="user_img">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                        </div>
+                        <div class="user_name">
+                          <h5>Jugal Kishore Chanda</h5>
+                        </div>
+                      </div>
+                      <div class="card-body bg-light">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                      </div>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-header d-flex">
+                        <div class="user_img">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                        </div>
+                        <div class="user_name">
+                          <h5>Jugal Kishore Chanda</h5>
+                        </div>
+                      </div>
+                      <div class="card-body bg-light">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="card discussion_single">
+                <!-- For main discussion-->
+                <div class="card-header d-flex">
+                  <div class="user_img">
+                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                  </div>
+                  <div class="user_name">
+                    <h5>Jugal Kishore Chanda</h5>
+                  </div>
+                </div>
+
+                <div class="card-body bg-light">
+
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                  <div class="reply_btn">
+                    <button class="btn btn-link see_replies" data-reply-id="disid02" href=""><span>0 Reply</span> </button>
+                    <button class="btn btn-link reply_a_discussion" data-reply-form-id="rf-disid02" href="">Reply</button>
+                  </div>
+                  <div id="disid02" class="collapse ml-2">
+                    <div class="card discussion_reply" id="rf-disid02">
+                      <div class="card-body bg-light ">
+                        <form class="" action="" method="post">
+                          <input type="text" name="discussion_id" value="01" hidden>
+                          <div class="form-group">
+                            <label for="">Name</label>
+                            <input type="text" name="" value="" class="form-control">
+                          </div>
+                          <div class="form-group">
+                            <label for="">Your problem description</label>
+                            <textarea name="name" rows="8" cols="80" class="form-control"></textarea>
+
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+
+                    <div class="card">
+                      <div class="card-header d-flex">
+                        <div class="user_img">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                        </div>
+                        <div class="user_name">
+                          <h5>Jugal Kishore Chanda</h5>
+                        </div>
+                      </div>
+                      <div class="card-body bg-light">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                      </div>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-header d-flex">
+                        <div class="user_img">
+                          <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                        </div>
+                        <div class="user_name">
+                          <h5>Jugal Kishore Chanda</h5>
+                        </div>
+                      </div>
+                      <div class="card-body bg-light">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
             </div>
+            <div class="mt-2">
 
+              <h4 class="text-center">Post your discussion</h4>
+              <form class="" action="" method="post">
+                <div class="form-group">
+                  <label for="">Your Name</label>
+                  <input type="text" name="" value="" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="">Your discussion</label>
+                  <textarea name="name" rows="8" cols="80" class="form-control"></textarea>
 
-            <div class="tab-pane fade" id="discussion" role="tabpanel" >
-              <div class="discussion_pannel">
-                <div class="card discussion_single">
-                  <!-- For main discussion-->
-                  <div class="card-header d-flex">
-                    <div class="user_img">
-                      <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                    </div>
-                    <div class="user_name">
-                      <h5>Jugal Kishore Chanda</h5>
-                    </div>
-                  </div>
+                </div>
+                <div class="form-group text-center">
+                  <button type="submit" name="button" class="btn btn-primary btn-sm px-4">Post</button>
 
-                  <div class="card-body bg-light">
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <div class="reply_btn">
-                      <button class="btn btn-link see_replies" data-reply-id="disid01"><span>0 Reply</span> </button>
-                      <button class="btn btn-link reply_a_discussion" data-reply-form-id="rf-disid01">Reply</button>
-                    </div>
-                    <div id="disid01" class="collapse ml-2">
-                      <div class="card discussion_reply" id="rf-disid01">
-                        <div class="card-body bg-light ">
-                          <form class="" action="" method="post">
-                            <input type="text" name="discussion_id" value="01" hidden>
-                            <div class="form-group">
-                              <label for="">Name</label>
-                              <input type="text" name="" value="" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <label for="">Your problem description</label>
-                              <textarea name="name" rows="8" cols="80" class="form-control"></textarea>
-
-                            </div>
-                          </form>
-                        </div>
-
-                      </div>
-
-                      <div class="card">
-                        <div class="card-header d-flex">
-                          <div class="user_img">
-                            <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                          </div>
-                          <div class="user_name">
-                            <h5>Jugal Kishore Chanda</h5>
-                          </div>
-                        </div>
-                        <div class="card-body bg-light">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                        </div>
-                      </div>
-
-                      <div class="card">
-                        <div class="card-header d-flex">
-                          <div class="user_img">
-                            <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                          </div>
-                          <div class="user_name">
-                            <h5>Jugal Kishore Chanda</h5>
-                          </div>
-                        </div>
-                        <div class="card-body bg-light">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
                 </div>
 
-                <div class="card discussion_single">
-                  <!-- For main discussion-->
-                  <div class="card-header d-flex">
-                    <div class="user_img">
-                      <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                    </div>
-                    <div class="user_name">
-                      <h5>Jugal Kishore Chanda</h5>
-                    </div>
-                  </div>
+              </form>
 
-                  <div class="card-body bg-light">
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <div class="reply_btn">
-                      <button class="btn btn-link see_replies" data-reply-id="disid02" href=""><span>0 Reply</span> </button>
-                      <button class="btn btn-link reply_a_discussion" data-reply-form-id="rf-disid02" href="">Reply</button>
-                    </div>
-                    <div id="disid02" class="collapse ml-2">
-                      <div class="card discussion_reply" id="rf-disid02">
-                        <div class="card-body bg-light ">
-                          <form class="" action="" method="post">
-                            <input type="text" name="discussion_id" value="01" hidden>
-                            <div class="form-group">
-                              <label for="">Name</label>
-                              <input type="text" name="" value="" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <label for="">Your problem description</label>
-                              <textarea name="name" rows="8" cols="80" class="form-control"></textarea>
-
-                            </div>
-                          </form>
-                        </div>
-
-                      </div>
-
-                      <div class="card">
-                        <div class="card-header d-flex">
-                          <div class="user_img">
-                            <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                          </div>
-                          <div class="user_name">
-                            <h5>Jugal Kishore Chanda</h5>
-                          </div>
-                        </div>
-                        <div class="card-body bg-light">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                        </div>
-                      </div>
-
-                      <div class="card">
-                        <div class="card-header d-flex">
-                          <div class="user_img">
-                            <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                          </div>
-                          <div class="user_name">
-                            <h5>Jugal Kishore Chanda</h5>
-                          </div>
-                        </div>
-                        <div class="card-body bg-light">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-
-
-
-              </div>
-              <div class="mt-2">
-
-                <h4 class="text-center">Post your discussion</h4>
-                <form class="" action="" method="post">
-                  <div class="form-group">
-                    <label for="">Your Name</label>
-                    <input type="text" name="" value="" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="">Your discussion</label>
-                    <textarea name="name" rows="8" cols="80" class="form-control"></textarea>
-
-                  </div>
-                  <div class="form-group text-center">
-                    <button type="submit" name="button" class="btn btn-primary btn-sm px-4">Post</button>
-
-                  </div>
-
-                </form>
-
-              </div>
-            </div>
-
-            <div class="tab-pane fade" id="review" role="tabpanel">
-              <div class="card">
-                <div class="card-header d-flex">
-                  <div class="user_img">
-                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                  </div>
-                  <div class="user_name d-flex align-items-center ml-2">
-                    <h5>Jugal Kishore Chanda</h5>
-                  </div>
-                </div>
-                <div class="card-body bg-light">
-                  <h2>4.4</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header d-flex">
-                  <div class="user_img">
-                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                  </div>
-                  <div class="user_name d-flex align-items-center ml-2">
-                    <h5>Jugal Kishore Chanda</h5>
-                  </div>
-                </div>
-                <div class="card-body bg-light">
-                  <h2>4.4</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header d-flex">
-                  <div class="user_img">
-                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                  </div>
-                  <div class="user_name d-flex align-items-center ml-2">
-                    <h5>Jugal Kishore Chanda</h5>
-                  </div>
-                </div>
-                <div class="card-body bg-light">
-                  <h2>4.4</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header d-flex">
-                  <div class="user_img">
-                    <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
-                  </div>
-                  <div class="user_name d-flex align-items-center ml-2">
-                    <h5>Jugal Kishore Chanda</h5>
-                  </div>
-                </div>
-                <div class="card-body bg-light">
-                  <h2>4.4</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-              </div>
             </div>
           </div>
 
+          <div class="tab-pane fade" id="review" role="tabpanel">
+            <div class="card">
+              <div class="card-header d-flex">
+                <div class="user_img">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                </div>
+                <div class="user_name d-flex align-items-center ml-2">
+                  <h5>Jugal Kishore Chanda</h5>
+                </div>
+              </div>
+              <div class="card-body bg-light">
+                <h2>4.4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header d-flex">
+                <div class="user_img">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                </div>
+                <div class="user_name d-flex align-items-center ml-2">
+                  <h5>Jugal Kishore Chanda</h5>
+                </div>
+              </div>
+              <div class="card-body bg-light">
+                <h2>4.4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header d-flex">
+                <div class="user_img">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                </div>
+                <div class="user_name d-flex align-items-center ml-2">
+                  <h5>Jugal Kishore Chanda</h5>
+                </div>
+              </div>
+              <div class="card-body bg-light">
+                <h2>4.4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header d-flex">
+                <div class="user_img">
+                  <img src="{{ asset('custom/img/avatar6.png') }}" alt="">
+                </div>
+                <div class="user_name d-flex align-items-center ml-2">
+                  <h5>Jugal Kishore Chanda</h5>
+                </div>
+              </div>
+              <div class="card-body bg-light">
+                <h2>4.4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
+      </div>
 
-      </section>
 
-</div>
+    </section>
+
+>
 
 @endsection
 

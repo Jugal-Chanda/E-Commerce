@@ -37,7 +37,7 @@
                     <td>
                       @if(is_null($order->status))
                         <a href="{{ route('order.confirm',['order'=> $order]) }}" class="btn btn-success btn-sm">Confirm</a>
-                        <a href="{{ route('order.decline',['order'=> $order]) }}" class="btn btn-danger btn-sm">Decline</a>
+
                       @else
                         @if($order->status)
                           @if($order->delivered)
@@ -49,6 +49,8 @@
                           <span class="text-danger">Declined</span>
                         @endif
                       @endif
+                      <br><a href="{{ route('order.decline',['order'=> $order]) }}" class="btn btn-danger btn-sm m-1">Decline</a>
+
                     </td>
                   </tr>
 

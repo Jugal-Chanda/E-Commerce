@@ -4,9 +4,7 @@
 
 @section('content')
 
-<div class="bg-light">
-
-  <div class="pt-2 container">
+<div class="pt-2 container">
     @if (count($errors) >0)
         <ul class="" style="list-style: none; padding: 10px 0px;">
             @foreach ($errors->all() as $error)
@@ -130,7 +128,6 @@
       </div>
   </div>
 
-</div>
 @endsection
 
 @section('js')

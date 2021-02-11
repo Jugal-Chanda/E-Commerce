@@ -95,7 +95,9 @@ class FrontendController extends Controller
       $user = Auth::user();
       if($user->customer){
         $customer = $user->customer;
-        $orders = Order::where('customer_id',$customer->id)->get();
+        $orders = Order::where('customer_id',$customer->id);
+        $orders = $orders->where('status',1);
+        $orders = $orders->orderBy('created_at')->get();
         return view('profile.orders',[
           'orders'=>$orders,
           'cart_count' =>$this->cartCount()
