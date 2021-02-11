@@ -17,17 +17,17 @@ Route::get('/','FrontendController@home')->name('home');
 // Route::get('/{search}','FrontendController@search')->name('search');
 Route::get('/category/{category}','FrontendController@categoryWiseProduct')->name('category.product');
 Route::get('/product/{product}','FrontendController@productSingle')->name('productSingle');
-Route::get('/addtocart/{id}','FrontendController@addToCart')->name('addtocart');
-Route::get('/mycart','FrontendController@myCart')->name('mycart');
-Route::get('/increaseqty/{id}','FrontendController@increaseQuantity')->name('increaseqty');
-Route::get('/decreaseqty/{id}','FrontendController@decreaseQuantity')->name('decreaseqty');
-Route::get('/deletefromcart/{id}','FrontendController@deleteFromCart')->name('deletefromcart');
 Route::get('/offers','FrontendController@offers')->name('offers');
 Route::get('/toutorials','FrontendController@toutorials')->name('toutorials');
 Route::post('/contact','FrontendController@contact')->name('contact');
 
 
 Route::group(['middleware'=>['auth','verified']],function(){
+  Route::get('/addtocart/{id}','FrontendController@addToCart')->name('addtocart');
+  Route::get('/mycart','FrontendController@myCart')->name('mycart');
+  Route::get('/increaseqty/{id}','FrontendController@increaseQuantity')->name('increaseqty');
+  Route::get('/decreaseqty/{id}','FrontendController@decreaseQuantity')->name('decreaseqty');
+  Route::get('/deletefromcart/{id}','FrontendController@deleteFromCart')->name('deletefromcart');
   Route::get('/order/procede','FrontendController@checkout')->name('checkout');
   Route::post('/order/placeorder','OrderController@placeorder')->name('order.placeorder');
   Route::get('/monerecipt/{order}','FrontendController@moneyRecipt')->name('moneyRecipt');
