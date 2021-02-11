@@ -33,7 +33,7 @@ img {
         <td class="text-left">
           Customer Name: {{ $order->customer->user->name }}<br>
           Phone: {{ $order->customer->user->phone }}<br>
-          Email: {{ $order->customer->user->Email }}<br>
+          Email: {{ $order->customer->user->email }}<br>
         </td>
         <td class="text-right">
           Shipping Address<br>
@@ -68,8 +68,24 @@ img {
           <td> </td>
           <td></td>
           <td> Delivary</td>
-          <td> 50</td>
+          <td>
+            @if($order->delivery_address)
+            60
+            @else
+            100
+            @endif
+          </td>
         </tr>
+        @if($order->discount != 0)
+        <tr>
+          <td> </td>
+          <td></td>
+          <td> Discount</td>
+          <td>
+            -{{$order->discount}}
+          </td>
+        </tr>
+        @endif
         <tr>
           <td> </td>
           <td></td>

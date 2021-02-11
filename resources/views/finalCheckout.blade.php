@@ -5,7 +5,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6">
         <h3>Your Order</h3>
         <table class="table table-bordered">
             <thead>

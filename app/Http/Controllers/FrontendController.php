@@ -264,6 +264,7 @@ class FrontendController extends Controller
             return redirect()->back();
         }
         return view('checkout',[
+          'carts'=>$carts,
           'cart_count' =>$this->cartCount()
         ]);
     }

@@ -13,6 +13,22 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function promoCheck(Request $request)
+    {
+      $data = $request->all();
+      $code = $data['code'];
+      $offer = Offer::where('promo_code',$code)->first();
+      $data = array();
+      if($offer){
+        $data['status'] = "ok";
+        $data['ammount'] = $offer->percentage;
+        return response()->json($data,200);
+      }
+      $data['status'] = "no";
+      $data['ammount'] = 0;
+      return response()->json($data,200);
+    }
     public function index()
     {
         //

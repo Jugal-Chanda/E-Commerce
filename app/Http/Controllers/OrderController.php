@@ -14,9 +14,10 @@ use Session;
 
 class OrderController extends Controller
 {
+
+
   public function placeorder(Request $request)
   {
-      // dd($request);
       $this->validate($request,[
           'full_name' => 'required',
           'email' => 'required|email',
@@ -25,15 +26,10 @@ class OrderController extends Controller
           'town_city' => 'required',
           'state_country' => 'required',
           'postcode_zip' => 'required',
+          'delivery' => 'required',
+          'payment_method' => 'required'
       ]);
-      $offer = null;
-      if($request->promo){
-        $offer = Offer::where('promo_code',$request->promo)->first();
-        if(is_null($offer)){
-          Session::flash('no_promo',"Your Promo Code is not valid");
-          return redirect()->back();
-        }
-      }
+
 
       $user = User::firstOrCreate(
           ['email' => $request->email],
@@ -50,37 +46,48 @@ class OrderController extends Controller
               'postcode_zip' => $request->postcode_zip,
           ]
       );
-      $carts = Session::get('cart');
-      return view('finalCheckout',[
-        'carts'=> $carts,
-        'promo'=>$offer,
-        'delivary' => $request->delivery,
-      ]);
-      // dd($order->id);
-  }
+      $order  = new Order;
+      $order->customer_id = $customer->id;
+      $order->order_no = time();
+      $order->payment_mathod = $request->payment_method;
+      $order->total_price = 0;
+      $order->save();
 
-  public function finalCheckout($delivary,$total)
-  {
-    // code...
-    $order  = new Order;
-    $user = Auth::user();
-    $order->customer_id = $user->customer->id;
-    $order->order_no = time();
-    $order->payment_mathod = "Cash On";
-    $order->total_price = $total;
-    $order->save();
-    $cart = Session::get('cart');
-    foreach ($cart as $key => $product) {
-      $orderproduct = new OderProduct;
-      $orderproduct->order_id = $order->id;
-      $orderproduct->product_id = $key;
-      $orderproduct->quantity = $product['quantity'];
-      $orderproduct->price = $product['price'];
-      $orderproduct->save();
-    }
-    $order->total_price = $total;
-    $order->save();
-    return redirect()->route('moneyRecipt',['order'=>$order]);
+
+
+      $cart = Session::get('cart');
+      $total = 0;
+      foreach ($cart as $key => $product) {
+        $orderproduct = new OderProduct;
+        $orderproduct->order_id = $order->id;
+        $orderproduct->product_id = $key;
+        $orderproduct->quantity = $product['quantity'];
+        $orderproduct->price = $product['price'];
+        $total += $orderproduct->quantity*$orderproduct->price;
+        $orderproduct->save();
+      }
+
+      $offer = null;
+      if($request->promo){
+        $offer = Offer::where('promo_code',$request->promo)->first();
+        if(!is_null($offer)){
+          $order->discount = ($total * ($offer->percentage/100));
+          $total = $total - ($total * ($offer->percentage/100));
+        }
+      }
+
+      if($request->delivery == "in_dhaka")
+      {
+        $order->delivery_address = 1;
+        $total+=60;
+      }else{
+        $order->delivery_address = 0;
+        $total+=100;
+      }
+
+      $order->total_price = $total;
+      $order->save();
+      return redirect()->route('moneyRecipt',['order'=>$order]);
   }
 
   public function adminOrders()

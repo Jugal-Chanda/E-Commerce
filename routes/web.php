@@ -35,7 +35,6 @@ Route::group(['middleware'=>['auth','verified']],function(){
   Route::get('/profiles','FrontendController@profile')->name('profile');
   Route::get('/profiles/edit','FrontendController@profileEdit')->name('profile.edit');
   Route::post('/profiles/update','FrontendController@profileUpdate')->name('profile.update');
-  Route::get('/finalCheckout/{delivary}/{total}','OrderController@finalCheckout')->name('order.final_Chekcout');
 
 });
 
