@@ -5,6 +5,15 @@
 @section('content')
 
   <div class="container pt-2">
+    <div class="my-2">
+      @if(count($announcements))
+        <marquee behavior="scroll" direction="left" style="color: red; font-weight: 400;">
+          @foreach($announcements as $announcement)
+          ***{{ $announcement->announcement }}***
+          @endforeach
+        </marquee>
+      @endif
+    </div>
     <h5>Cart</h5>
     <table class="table">
       <thead>

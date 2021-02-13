@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use App\Announcement;
 use Session;
 
 
@@ -26,18 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-      // $cart = app('session')->get('cart');
-      // print_r("hello");
-      // if(is_null($cart))
-      // {
-      //   $cart_count = 100;
-      //
-      //   // $cart_count = 10;
-      // }
-      // else
-      // {
-      //   $cart_count = count($cart);
-      // }
-      // View::share('cart_count', $cart_count);
+      $announcements = Announcement::where('visible',true)->orderBy('created_at')->get();
+      View::share('announcements', $announcements);
     }
 }

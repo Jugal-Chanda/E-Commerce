@@ -14,8 +14,9 @@
 
 @section('content')
 <section class="container mt-3">
+
       <div class="row mb-3">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="search_input_btn_container">
               <form class="" action="" method="get">
                 <input type="text" name="search" value="" class="form-control search_input" placeholder="Search your product here">
@@ -23,14 +24,15 @@
               </form>
             </div>
         </div>
-        <div class="col-md-4 cart_icon_container">
-          <div class="cart_icon">
-            <a href="{{ route('mycart') }}"><i class="fas fa-shopping-cart fa-lg"></i></a>
-            <div class="cart_count">
-              {{ $cart_count }}
-            </div>
-          </div>
-        </div>
+      </div>
+      <div class="my-2">
+        @if(count($announcements))
+          <marquee behavior="scroll" direction="left" style="color: red; font-weight: 400;">
+            @foreach($announcements as $announcement)
+            ***{{ $announcement->announcement }}***
+            @endforeach
+          </marquee>
+        @endif
       </div>
       <div class="row">
         <div class="col-md-3">
@@ -44,7 +46,7 @@
                 <a class="nav-link" href="{{ route('category.product',['category'=>$kit]) }}" style="color: white; font-weight: 600;letter-spacing: 0.1em;">{{ $kit->name }}</a>
               </li>
               @endif
-              
+
               @foreach($categories as $category)
               <li class="nav-item side_nav_item">
                 <a class="nav-link" href="{{ route('category.product',['category'=>$category]) }}">{{ $category->name }}</a>

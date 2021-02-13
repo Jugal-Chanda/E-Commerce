@@ -14,7 +14,15 @@
 
 
 <section class="container">
-
+  <div class="my-2">
+    @if(count($announcements))
+      <marquee behavior="scroll" direction="left" style="color: red; font-weight: 400;">
+        @foreach($announcements as $announcement)
+        ***{{ $announcement->announcement }}***
+        @endforeach
+      </marquee>
+    @endif
+  </div>
       <div class="row">
         <div class="col-md-4 product_image">
 
