@@ -64,6 +64,16 @@
 
                     </select>
                 </div>
+                <div class="form-group">
+                  Related Product
+                  <div class="row">
+                    @foreach($products as $product)
+                    <div class="col-md-6">
+                      <input type="checkbox" name="related[]" value="{{ $product->id }}" id="{{ $product->id }}"><label class="ml-1" for="{{ $product->id }}">{{ $product->name }}</label>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
                 <div class="text-center">
                     <button type="submit" name="button" class="btn btn-success btn-sm px-3">Store</button>
                 </div>

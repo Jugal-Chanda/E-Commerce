@@ -26,7 +26,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-      return view('admin.product.create',['categories'=> Category::all()]);
+      return view('admin.product.create',[
+        'categories'=> Category::all(),
+        'products' => Product::all()
+      ]);
     }
 
     /**
@@ -73,6 +76,7 @@ class ProductController extends Controller
           'image4' => 'upload/products/'.$image4_new_name,
           'category_id' => $request->category_id
       ]);
+      $product->related()->sync($request->related);
       Session::flash('status','New Product Added');
       return redirect()->back();
     }
@@ -96,7 +100,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.product.edit',['product'=>$product,'categories'=> Category::all()]);
+        return view('admin.product.edit',[
+          'product'=>$product,
+          'categories'=> Category::all(),
+          'relateds'=>Product::where('id','!=',$product->id)->get()
+        ]);
     }
 
     /**
@@ -147,6 +155,7 @@ class ProductController extends Controller
         $image1->move('upload/products',$image1_new_name);
         $product->image4 = $uploadPath.$image1_new_name;
       }
+      $product->related()->sync($request->related);
       $product->save();
       Session::flash('status',$product->name." Updated");
       return redirect()->back();

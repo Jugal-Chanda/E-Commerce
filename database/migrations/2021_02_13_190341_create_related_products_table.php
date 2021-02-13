@@ -15,6 +15,8 @@ class CreateRelatedProductsTable extends Migration
     {
         Schema::create('related_products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreignId('related_product')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

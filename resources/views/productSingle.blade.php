@@ -99,6 +99,38 @@
 
       </div>
 
+      <div class="row ">
+        @foreach($product->related()->inRandomOrder()->take(4)->get() as $related)
+        <div class="col-md-3 mb-2 related_product_container">
+          <div class=" py-2">
+            <div class="related_product_image">
+              <a href="{{ route('productSingle',['product'=>$related->id]) }}"><img src="{{ asset($related->image1) }}" alt="Product1"></a>
+            </div>
+            <div class="related_product_sort_description">
+              {{ $related->name }}
+            </div>
+            @if($related->hasStock())
+              @if($related->stock()->hasOffer())
+              <div class="related_product_price related_product_offer">
+                <span>{{ $related->priceShow("original") }}</span>
+                {{ $related->priceShow("offer") }}
+              </div>
+              @else
+              <div class="related_product_price">
+                {{ $related->priceShow("original") }}
+              </div>
+              @endif
+            @else
+            <div class="related_product_out_of_stock">
+              {{ $related->priceShow("original") }}
+            </div>
+            @endif
+          </div>
+        </div>
+        @endforeach
+
+      </div>
+
       <div class="mt-5">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">

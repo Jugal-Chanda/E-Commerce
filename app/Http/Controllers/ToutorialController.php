@@ -105,7 +105,7 @@ class ToutorialController extends Controller
         $image->move($uploadPath,$image_new_name);
         $toutorial->thumbnail = $uploadPath.$image_new_name;
       }
-      $toutorial->products()->attach($request->product);
+      $toutorial->products()->sync($request->product);
       Session::flash('status','Toutorial Playlist Updated successfully');
       return redirect()->back();
     }
