@@ -13,6 +13,7 @@ use App\Toutorial;
 use App\Toutorial_Part;
 use App\Order;
 use App\User;
+use App\Announcement;
 use Auth;
 use Session;
 
@@ -59,9 +60,11 @@ class FrontendController extends Controller
         });
       }
       $kit = Category::where('name','kit')->first();
+      $announcements = Announcement::where('visible',true)->orderBy('created_at')->get();
 
         $toutorials = Toutorial_Part::orderBy('created_at',"DESC")->get();
         return view('index',[
+          'announcements' => $announcements,
           'kit' => $kit,
           'categories'=>Category::orderBy('name')->get(),
           'products'=>$products->take(12),

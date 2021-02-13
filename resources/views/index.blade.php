@@ -16,6 +16,8 @@
 
 
 <section class="container mt-3">
+
+
       <div class="row mb-3">
         <div class="col-md-12">
             <div class="search_input_btn_container">
@@ -27,6 +29,13 @@
             </div>
         </div>
       </div>
+      @if(count($announcements))
+        <marquee behavior="scroll" direction="left" style="color: red; font-weight: 400;">
+          @foreach($announcements as $announcement)
+          ***{{ $announcement->announcement }}***
+          @endforeach
+        </marquee>
+      @endif
       <div class="row">
         <div class="col-md-3">
           <div class="category_sidebar">
