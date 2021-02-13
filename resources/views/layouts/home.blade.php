@@ -33,7 +33,8 @@
       <div class="row">
         <div class="col-lg-4 justify-content-center logo_div_container">
           <div class="logo_container">
-            <img src="{{asset('custom/img/logo.png')}}" alt="">
+            <a href="{{ route('home') }}"><img src="{{asset('custom/img/logo.png')}}" alt=""></a>
+
           </div>
 
         </div>
@@ -84,7 +85,7 @@
 
       </div>
 
-      
+
 
     </header>
 
