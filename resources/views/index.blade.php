@@ -13,8 +13,6 @@
 @endsection
 
 @section('content')
-
-
 <section class="container mt-3">
 
 
