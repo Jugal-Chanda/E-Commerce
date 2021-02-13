@@ -34,7 +34,6 @@
         <div class="col-lg-4 justify-content-center logo_div_container">
           <div class="logo_container">
             <a href="{{ route('home') }}"><img src="{{asset('custom/img/logo.png')}}" alt=""></a>
-
           </div>
 
         </div>

@@ -37,21 +37,20 @@
       <div class="row">
         <div class="col-md-3">
           <div class="category_sidebar">
-            <div class="category_sidebar_header">
-              <h5>Category</h5>
+            <div class="category_sidebar_header category_sidebar_header bg-info text-uppercase py-2 border-none mb-2">
+              <h5 style="color: white; font-weight: 600;letter-spacing: 0.1em;">Category</h5>
             </div>
             <ul class="navbar-nav ml-auto">
               @if($kit)
-              <li class="nav-item side_nav_item bg-info text-uppercase" >
-                <a class="nav-link" href="{{ route('category.product',['category'=>$kit]) }}" style="color: white; font-weight: 600;letter-spacing: 0.1em;">{{ $kit->name }}</a>
-              </li>
-              @endif
-
-              @foreach($categories as $category)
-              <li class="nav-item side_nav_item">
-                <a class="nav-link" href="{{ route('category.product',['category'=>$category]) }}">{{ $category->name }}</a>
-              </li>
-              @endforeach
+             <li class="nav-item side_nav_item kit_category text-capitalize">
+               <a class="nav-link ml-2" href="{{ route('category.product',['category'=>$kit]) }}" style="">{{ $kit->name }}</a>
+             </li>
+             @endif
+             @foreach($categories as $category)
+             <li class="nav-item side_nav_item text-capitalize">
+               <a class="nav-link ml-2" href="{{ route('category.product',['category'=>$category]) }}">{{ $category->name }}</a>
+             </li>
+             @endforeach
             </ul>
           </div>
           <div class="social_payment">
