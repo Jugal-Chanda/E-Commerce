@@ -3,3 +3,5 @@
 @else
     <td class="text-danger">: Out Of Stock</td>
 @endif
+
+Text
