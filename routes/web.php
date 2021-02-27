@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','admin','verified']],f
 
     Route::resource('/announcement','AnnouncementController');
     Route::get('/announcement/{announcement}/visibility','AnnouncementController@toggleVisible')->name('announcement.change_visibility');
+    Route::get('/voucher','AdminController@voucher')->name('voucher');
 });
 
 Auth::routes(['verify' => true]);

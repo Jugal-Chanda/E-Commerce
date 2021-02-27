@@ -125,6 +125,10 @@
                     <li class="list-group-item">
                       <a href="{{ route('announcement.index') }}" style="text-decoration: none;">Announcement</a>
                     </li>
+
+                    <li class="list-group-item">
+                      <a href="{{ route('voucher') }}" style="text-decoration: none;">Voucher</a>
+                    </li>
                   </ul>
                 </div>
               </div>
