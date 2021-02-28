@@ -57,15 +57,86 @@
           </thead>
           <tbody style="border: 1px solid black;">
 
-            <?php for($i=1; $i<18; $i++) { ?>
+
               <tr style="border: 1px solid black;">
-                <td style="border: 1px solid black;">{{ $i }}</td>
+                <td style="border: 1px solid black;">1</td>
                 <td style="border: 1px solid black;"></td>
                 <td style="border: 1px solid black;"></td>
                 <td style="border: 1px solid black;"></td>
                 <td style="border: 1px solid black;"></td>
               </tr>
-            <?php } ?>
+
+            <tr>
+              <td colspan="4" class="text-right" style="border: 1px solid black;"> <b>Delivery</b> </td>
+              <td style="border: 1px solid black;"></td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-right" style="border: 1px solid black;"> <b>Total</b> </td>
+              <td style="border: 1px solid black;"></td>
+            </tr>
+          </tbody>
+
+        </table>
+        <div class="" style="overflow: hidden;">
+          <div class="mt-5 px-5 text-center mr-2" style="border-top: 1px dashed black; float: right;"> Vendor Signature</div>
+        </div>
+
+    </div>
+
+    <div class="my-5" style="border-top: 1px dashed black"></div>
+
+    <div class="p-4" style="border: 1px dashed black">
+
+        <table style="width: 100%;" class="header">
+          <tr>
+            <td style="width: 250px;">
+              <img src="{{ asset('custom/img/logo.png') }}" alt="" style="width: 250px;">
+            </td>
+            <td class="text-center" style="color: #f53905">
+              <b>Phone: +880-17017-12981</b> <br>
+              <b>Email: contact@zontrotech.com</b><br>
+              <b style="color: #2469cc;">Facebook: www.facebook.com/zontrotech</b><br>
+              <b style="color: #2469cc;">Website: www.zontrotech.com/</b>
+            </td>
+            <td class="">
+              <div class="py-1"> Customer Name: </div>
+              <div class="py-1"> Customer Phone: </div>
+              <div class="py-1"> Customer Email: </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left">
+              <div class="py-2">Invoice# </div>
+              <div class="py-2">Date: </div>
+            </td>
+            <td></td>
+            <td class="" style="height: 90px;">
+              Shipping Address<br>
+            </td>
+          </tr>
+
+        </table>
+        <table class="table" style="border: 1px solid black;">
+          <thead style="border: 1px solid black;">
+            <tr style="border: 1px solid black;">
+              <th style="border: 1px solid black;width:5%">Sl</th>
+              <th style="border: 1px solid black; width:80%">Product Name</th>
+              <th style="border: 1px solid black; width: 5%;">Product Quantity</th>
+              <th style="border: 1px solid black; width: 5%;">Unit Price</th>
+              <th style="border: 1px solid black; width: 5%;"> Total</th>
+            </tr>
+          </thead>
+          <tbody style="border: 1px solid black;">
+
+
+              <tr style="border: 1px solid black;">
+                <td style="border: 1px solid black;">1</td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+              </tr>
+
             <tr>
               <td colspan="4" class="text-right" style="border: 1px solid black;"> <b>Delivery</b> </td>
               <td style="border: 1px solid black;"></td>
