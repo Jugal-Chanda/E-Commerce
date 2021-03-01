@@ -14,71 +14,71 @@
 
   <body>
 
-    <div class="p-4" style="border: 1px dashed black">
+    <div class="p-4" style="border: 2px dashed black">
 
-        <table style="width: 100%;" class="header">
-          <tr>
-            <td style="width: 250px;">
-              <img src="{{ asset('custom/img/logo.png') }}" alt="" style="width: 250px;">
-            </td>
-            <td class="text-center" style="color: #f53905">
-              <b>Phone: +880-17017-12981</b> <br>
-              <b>Email: contact@zontrotech.com</b><br>
-              <b style="color: #2469cc;">Facebook: www.facebook.com/zontrotech</b><br>
-              <b style="color: #2469cc;">Website: www.zontrotech.com/</b>
-            </td>
-            <td class="">
-              <div class="py-1"> Customer Name: </div>
-              <div class="py-1"> Customer Phone: </div>
-              <div class="py-1"> Customer Email: </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              <div class="py-2">Invoice# </div>
-              <div class="py-2">Date: </div>
-            </td>
-            <td></td>
-            <td class="" style="height: 90px;">
-              Shipping Address<br>
-            </td>
-          </tr>
+      <table style="width: 100%;" class="header mb-2">
+        <tr>
+          <td style="width: 15%;" class="">
+            <img src="{{ asset('custom/img/logo.png') }}" alt="" style="width: 150px;">
+          </td>
+          <td class="text-center" style="color: #f53905; width: 55%; font-size: 14px;">
+            <b style="color: #2469cc;">Facebook: www.facebook.com/zontrotech</b><br>
+            <b style="color: #2469cc;">Website: www.zontrotech.com/</b> <br>
+            <b>Email: contact@zontrotech.com</b><br>
+            <b>Phone: +880-17017-12981</b>
+          </td>
+          <td class="" style="width: 30%;">
+            <div class="py-1"><b>Customer Info:</b></div>
+            <div class="py-1"><b>Name: </b></div>
+            <div class="py-1"><b>Phone:</b> </div>
+            <div class="py-1"><b>Email:</b> </div>
+            <div class="py-1"><b>Shipping Address:</b> </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">
+            <div class="py-1"><b>Invoice#</b> </div>
+            <div class="py-1"><b>Date:</b> </div>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
 
-        </table>
-        <table class="table" style="border: 1px solid black;">
-          <thead style="border: 1px solid black;">
-            <tr style="border: 1px solid black;">
-              <th style="border: 1px solid black;width:5%">Sl</th>
-              <th style="border: 1px solid black; width:80%">Product Name</th>
-              <th style="border: 1px solid black; width: 5%;">Product Quantity</th>
-              <th style="border: 1px solid black; width: 5%;">Unit Price</th>
-              <th style="border: 1px solid black; width: 5%;"> Total</th>
+      </table>
+        <table class="table text-center" style="border: 2px solid black;" >
+          <thead style="border: 2px solid black;">
+            <tr style="border: 2px solid black;">
+              <th style="border: 2px solid black;width:5%">Sl</th>
+              <th style="border: 2px solid black; width:80%">Product Name</th>
+              <th style="border: 2px solid black; width: 5%;">Product Quantity</th>
+              <th style="border: 2px solid black; width: 5%;">Unit Price</th>
+              <th style="border: 2px solid black; width: 5%;"> Total</th>
             </tr>
           </thead>
-          <tbody style="border: 1px solid black;">
+          <tbody style="border: 2px solid black;">
 
             <?php for($i=1; $i<18; $i++) { ?>
-              <tr style="border: 1px solid black;">
-                <td style="border: 1px solid black;">{{ $i }}</td>
-                <td style="border: 1px solid black;"></td>
-                <td style="border: 1px solid black;"></td>
-                <td style="border: 1px solid black;"></td>
-                <td style="border: 1px solid black;"></td>
+              <tr style="border: 2px solid black;">
+                <td style="border: 2px solid black;">{{ $i }}</td>
+                <td style="border: 2px solid black;"></td>
+                <td style="border: 2px solid black;"></td>
+                <td style="border: 2px solid black;"></td>
+                <td style="border: 2px solid black;"></td>
               </tr>
             <?php } ?>
             <tr>
-              <td colspan="4" class="text-right" style="border: 1px solid black;"> <b>Delivery</b> </td>
-              <td style="border: 1px solid black;"></td>
+              <td colspan="4" class="text-right" style="border: 2px solid black;"> <b>Delivery</b> </td>
+              <td style="border: 2px solid black;"></td>
             </tr>
             <tr>
-              <td colspan="4" class="text-right" style="border: 1px solid black;"> <b>Total</b> </td>
-              <td style="border: 1px solid black;"></td>
+              <td colspan="4" class="text-right" style="border: 2px solid black;"> <b>Total</b> </td>
+              <td style="border: 2px solid black;"></td>
             </tr>
           </tbody>
 
         </table>
         <div class="" style="overflow: hidden;">
-          <div class="mt-5 px-5 text-center mr-2" style="border-top: 1px dashed black; float: right;"> Vendor Signature</div>
+          <div class="mt-5 px-5 text-center mr-2" style="border-top: 2px dashed black; float: right;"> Vendor Signature</div>
         </div>
 
     </div>
